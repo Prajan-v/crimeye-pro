@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import LLMDetectionTest from './components/LLMDetectionTest'; // <-- ADD THIS IMPORT
 
 function App() {
     const [user, setUser] = useState(null);
@@ -21,7 +22,11 @@ function App() {
     return (
         <div className="App">
             {user ? (
-                <Dashboard user={user} onLogout={handleLogout} />
+                <>
+                    <Dashboard user={user} onLogout={handleLogout} />
+                    {/* Add the LLM Deduction Test below the dashboard or wherever you want */}
+                    <LLMDetectionTest />
+                </>
             ) : (
                 <Login onLogin={setUser} />
             )}

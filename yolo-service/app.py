@@ -136,3 +136,29 @@ if __name__ == '__main__':
     print("⚡ Speed: 30-50 FPS")
     print("="*50 + "\n")
     app.run(host='0.0.0.0', port=5002, debug=False)
+
+
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/yolo-health', methods=['GET'])
+def yolo_health():
+    return jsonify({'status': 'online', 'message': 'YOLO is running!'})
+
+@app.route('/detect-frame', methods=['POST'])
+def detect_frame():
+    # Example: return fake detection (replace with model result)
+    return jsonify({'result': 'Detection succeeded', 'objects': []})
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5002)
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/yolo-health', methods=['GET'])
+def yolo_health():
+    return jsonify({'status': 'online', 'message': 'YOLO is running!'})
+
+# (Keep your other code below)
