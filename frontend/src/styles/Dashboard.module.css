@@ -1,0 +1,167 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px; /* More space below header */
+}
+.header h1 {
+  margin: 0;
+  font-size: 2.2rem; /* Larger title */
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); /* Allow columns to shrink */
+  gap: 25px; /* Slightly larger gap */
+  /* Calculate height based on viewport minus header padding/margin and main padding */
+  height: calc(100vh - 60px - 30px - 30px); /* vh - mainPadTop - headerMargin - mainPadBottom */
+}
+.liveCard {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-light);
+  border-radius: 10px; /* Softer radius */
+  border: 1px solid #333;
+  overflow: hidden;
+  box-shadow: 0 5px 15px var(--shadow-color);
+}
+.liveCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem; /* Slightly larger header */
+  font-weight: 600;
+  padding: 15px 20px;
+  border-bottom: 1px solid #444;
+  color: var(--text-primary);
+  background-color: var(--bg-surface); /* Header background */
+  flex-shrink: 0; /* Prevent header shrinking */
+}
+.liveGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); /* Allow columns to shrink */
+  gap: 20px;
+  padding: 20px;
+  flex: 1; /* Fill available space */
+  min-height: 0; /* Important for flex/grid children */
+}
+.videoContainer {
+  background: #000;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  min-height: 300px; /* Ensure space for video */
+  display: flex; /* Center error message */
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #444; /* Subtle border */
+}
+.video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block; /* Remove extra space below video */
+}
+.webcamError {
+  color: var(--accent-red);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.analystPanel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0; /* Allow shrinking */
+}
+.analystHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+  flex-shrink: 0;
+}
+.reportStatus {
+  font-style: italic;
+  color: var(--text-secondary); /* Less prominent than gold */
+  margin-bottom: 10px;
+  height: 1.2em; /* Reserve space for status text */
+  flex-shrink: 0;
+}
+.threatBadge {
+  /* Use global .threat-badge class from index.css */
+  align-self: flex-start;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+}
+.report {
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  margin: 0 0 15px 0;
+  color: var(--text-primary);
+  min-height: 2em; /* Reserve space */
+  flex-shrink: 0;
+}
+.analysis {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-style: italic;
+  font-size: 0.9rem;
+  flex-grow: 1; /* Take remaining space */
+  overflow-y: auto; /* Scroll if analysis is long */
+  padding-right: 5px; /* Space for scrollbar */
+}
+.incidentCard {
+  composes: liveCard; /* Inherit card styles */
+  display: flex; /* Enable flex for header/list */
+  flex-direction: column;
+}
+.incidentList {
+  flex: 1; /* Allow list to fill space */
+  overflow-y: auto; /* Enable scrolling */
+  padding: 0 20px 20px 20px; /* Padding for list items */
+  min-height: 0; /* Important for flex child */
+}
+.incidentItem {
+  border-bottom: 1px solid #444; /* Lighter border */
+  padding: 15px 0;
+}
+.incidentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.incidentTimestamp {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin: 5px 0;
+}
+.incidentReport {
+  margin: 10px 0 0 0;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  /* Limit lines */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.incidentImage {
+  width: 100%;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  display: block; /* Remove extra space */
+  background-color: #000; /* Placeholder bg */
+  aspect-ratio: 16 / 9; /* Maintain aspect ratio */
+  object-fit: cover;
+  border: 1px solid #333; /* Subtle border */
+}
