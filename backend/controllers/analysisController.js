@@ -11,11 +11,9 @@ const SYSTEM_PROMPT = `
 You are a top-tier security analyst, 'CrimeEye-Pro'.
 You will be given a surveillance frame and a list of 'triage alerts' from a YOLOv8 object detector.
 Your job is to analyze the image for **suspicious behavior** and **crime potential**.
-
 - **DO NOT** just list the objects. The YOLO model already did that.
 - **DO** analyze the *context*, *posture*, and *interaction* of people with objects.
 - **FOCUS** on suspicious activity, workplace monitoring, and potential crime.
-
 Respond in this exact JSON format, and nothing else:
 {
   "threat_level": "NONE | LOW | MEDIUM | HIGH | CRITICAL",
@@ -61,6 +59,7 @@ exports.analyzeFrame = async (req, res) => {
     return res.status(400).json({ message: "Missing camera_id or frame" });
   }
 
+  // 1. Get YOLO detections
   let yolo_data;
   try {
     const yolo_resp = await axios.post(YOLO_DETECT_URL, { frame });
@@ -69,26 +68,47 @@ exports.analyzeFrame = async (req, res) => {
     return res.status(503).json({ message: "YOLO service is offline or failed" });
   }
 
+  // 2. Stop if YOLO found nothing interesting
   if (!yolo_data.success || !yolo_data.trigger_llm) {
     return res.status(200).json({ message: "No objects of interest. LLM not triggered." });
   }
 
+  // 3. Call LLM for analysis FIRST
   const frameBase64 = frame.split(',')[1];
-  
-  const timestamp = new Date().toISOString().replace(/:/g, '-');
-  const imageFilename = `${camera_id}_${timestamp}.jpg`;
-  const imagePath = path.join('static', 'detections', imageFilename);
-  const localImagePath = path.join(__dirname, '..', imagePath);
-  
-  try {
-    await fs.writeFile(localImagePath, frameBase64, 'base64');
-  } catch (err) {
-    console.error("File save error:", err);
-    return res.status(500).json({ message: "Failed to save image snapshot." });
-  }
-
   const llm_data = await callOllama(frameBase64, yolo_data.yolo_alerts);
   
+  // 4. --- LOGIC CHANGE ---
+  // Only save the image and DB record if the threat is suspicious
+  let imagePath = null;
+  const isSuspicious = llm_data.threat_level === "MEDIUM" || 
+                       llm_data.threat_level === "HIGH" || 
+                       llm_data.threat_level === "CRITICAL";
+
+  if (isSuspicious) {
+    console.log(`SUSPICIOUS ACTIVITY DETECTED: ${llm_data.threat_level}. Saving image...`);
+    
+    // --- Image Save Logic is MOVED here ---
+    const timestamp = new Date().toISOString().replace(/:/g, '-');
+    const imageFilename = `${camera_id}_${timestamp}.jpg`;
+    const relativeImagePath = path.join('static', 'detections', imageFilename);
+    const localImagePath = path.join(__dirname, '..', relativeImagePath);
+    
+    try {
+      await fs.writeFile(localImagePath, frameBase64, 'base64');
+      imagePath = relativeImagePath; // Set path only on successful save
+    } catch (err) {
+      console.error("File save error:", err);
+      // Continue without image, path will be null
+    }
+
+  } else {
+    // Threat is NONE or LOW. Don't save image, and don't save to DB.
+    console.log(`Low threat: ${llm_data.threat_level}. Frame discarded.`);
+    return res.status(200).json({ message: `Low threat: ${llm_data.threat_level}. Frame discarded.` });
+  }
+  
+  // 5. --- LOGIC CHANGE ---
+  // This code only runs if (isSuspicious === true)
   try {
     const db_detection = await db.query(
       `INSERT INTO ai_detections (camera_id, image_path, yolo_alerts, llm_report, threat_level)
@@ -96,7 +116,7 @@ exports.analyzeFrame = async (req, res) => {
        RETURNING *`,
       [
         camera_id,
-        imagePath,
+        imagePath, // This will be the path or null if save failed
         JSON.stringify(yolo_data.yolo_alerts),
         llm_data.analysis || llm_data.report,
         llm_data.threat_level
@@ -114,9 +134,10 @@ exports.analyzeFrame = async (req, res) => {
   }
 };
 
+// This function remains unchanged
 exports.getDetections = async (req, res) => {
   try {
-    const limit = req.query.limit || 50; // Get 50 for the history page
+    const limit = req.query.limit || 50;
     const detections = await db.query(
       'SELECT * FROM ai_detections ORDER BY timestamp DESC LIMIT $1',
       [limit]

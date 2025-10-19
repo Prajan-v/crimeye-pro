@@ -1,0 +1,384 @@
+/* Overall Dashboard Layout */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #0d0d0d; /* Very dark background */
+  color: #e0e0e0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* --- Sidebar --- */
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background-color: #1a1a1a;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #f0c040; /* Gold */
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 1rem;
+}
+
+.nav-menu {
+  flex-grow: 1;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.5rem;
+  margin: 0.5rem 1rem;
+  color: #a0a0a0;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.nav-item:hover {
+  background-color: rgba(240, 192, 64, 0.1);
+  color: #f0c040;
+}
+
+.nav-item.active {
+  background-color: #f0c040;
+  color: #121212;
+  font-weight: 600;
+  box-shadow: 0 4px 15px rgba(240, 192, 64, 0.2);
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  /* Aligns with nav-item */
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.5rem;
+  margin: 0.5rem 1rem;
+  color: #a0a0a0;
+  font-size: 1rem;
+  font-family: inherit;
+  width: calc(100% - 2rem);
+  border-radius: 8px;
+  text-align: left;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 100, 100, 0.1);
+  color: #ff8a8a;
+}
+
+/* --- Main Content Area --- */
+.main-content {
+  flex-grow: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  overflow-y: auto;
+  max-height: 100vh;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  /* Fade-in animation */
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- System Status Panel (DB, YOLO, LLM) --- */
+.system-status-panel {
+  display: flex;
+  gap: 1.5rem;
+  background-color: #1a1a1a;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.5s ease-out 0.2s backwards;
+}
+
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #555; /* Default: Offline */
+  animation: pulse-offline 2s infinite;
+}
+
+.status-dot.online {
+  background-color: #28a745; /* Green */
+  box-shadow: 0 0 10px #28a745;
+  animation: pulse-online 1.5s infinite;
+}
+
+.status-dot.offline {
+  background-color: #dc3545; /* Red */
+  box-shadow: 0 0 10px #dc3545;
+}
+
+@keyframes pulse-online {
+  0% { box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); }
+  50% { box-shadow: 0 0 15px rgba(40, 167, 69, 1); }
+  100% { box-shadow: 0 0 5px rgba(40, 167, 69, 0.5); }
+}
+
+@keyframes pulse-offline {
+  0% { opacity: 0.7; }
+  50% { opacity: 1; }
+  100% { opacity: 0.7; }
+}
+
+/* --- Main Dashboard Grid (Cameras + Incidents) --- */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 2/3 for cams, 1/3 for incidents */
+  gap: 1.5rem;
+  flex-grow: 1;
+  /* This is crucial for scrolling */
+  min-height: 0; 
+}
+
+/* --- Camera Grid (DYNAMIC) --- */
+.camera-grid {
+  display: grid;
+  gap: 1.5rem;
+  overflow-y: auto;
+  min-height: 0;
+  /* Default: 1 camera */
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+/* 2 CAMERAS: 1x2 layout (stacked) */
+.camera-grid.count-2 {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+/* 3 or 4 CAMERAS: 2x2 layout */
+.camera-grid.count-3,
+.camera-grid.count-4 {
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+/* 5+ CAMERAS: 3x3 layout (or more) */
+.camera-grid.count-more {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.feed-panel {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  /* Fade-in animation for each camera */
+  opacity: 0;
+  animation: fadeInScale 0.5s ease-out forwards;
+}
+
+@keyframes fadeInScale {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.feed-header {
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  color: #f0c040;
+}
+
+.feed-video-container {
+  width: 100%;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  position: relative;
+  background-color: #000;
+}
+
+.feed-video-container video,
+.feed-video-container canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.analyst-panel {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: #1f1f1f;
+}
+
+.analyst-panel h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: #f0c040;
+}
+
+/* Threat Level Badge */
+.threat-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #121212;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.threat-badge.NONE { background-color: #28a745; }.threat-badge.LOW { background-color: #ffc107; }.threat-badge.MEDIUM { background-color: #fd7e14; }.threat-badge.HIGH { background-color: #dc3545; animation: pulse-threat 1s infinite; }.threat-badge.CRITICAL { background-color: #D93025; animation: pulse-threat 0.5s infinite; }
+
+@keyframes pulse-threat {
+  0% { transform: scale(1); box-shadow: 0 0 5px rgba(220, 53, 69, 0.5); }
+  50% { transform: scale(1.05); box-shadow: 0 0 15px rgba(220, 53, 69, 1); }
+  100% { transform: scale(1); box-shadow: 0 0 5px rgba(220, 53, 69, 0.5); }
+}
+
+.analyst-report {
+  font-size: 0.9rem;
+  color: #c0c0c0;
+  line-height: 1.5;
+  min-height: 3em; /* Reserve space for 2 lines */
+}
+
+/* --- Incidents Panel --- */
+.incident-panel {
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 1.25rem;
+  overflow: hidden; /* Important for child scrolling */
+  animation: fadeIn 0.5s ease-out 0.4s backwards;
+}
+
+.incident-panel h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  color: #f0c040;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.incident-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow-y: auto;
+  flex-grow: 1;
+  /* Custom scrollbar is handled globally by index.css */
+}
+
+.incident-card {
+  display: flex;
+  gap: 1rem;
+  background-color: #2a2a2a;
+  border-radius: 8px;
+  padding: 1rem;
+  border-left: 5px solid #555;
+  transition: all 0.3s ease;
+  /* Slide-in animation for new incidents */
+  animation: slideIn 0.5s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.incident-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Dynamic border color for threats */
+.incident-card.LOW { border-color: #ffc107; }.incident-card.MEDIUM { border-color: #fd7e14; }.incident-card.HIGH { border-color: #dc3545; }.incident-card.CRITICAL { border-color: #D93025; }
+
+.incident-snapshot {
+  width: 100px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  object-fit: cover;
+  background-color: #000;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.incident-info {
+  flex-grow: 1;
+  min-width: 0; /* Fix for flexbox overflow */
+}
+
+.incident-info h4 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
+  color: #fff;
+}
+
+.incident-info .timestamp {
+  font-size: 0.8rem;
+  color: #a0a0a0;
+  margin-bottom: 0.5rem;
+}
+
+.incident-info .report-summary {
+  font-size: 0.85rem;
+  color: #c0c0c0;
+  line-height: 1.4;
+  /* Truncate long reports */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

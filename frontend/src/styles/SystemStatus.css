@@ -1,0 +1,34 @@
+.system-status-container {
+    display: flex;
+    gap: var(--spacing-md);
+    background-color: var(--bg-card);
+    padding: 10px 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.status-item:hover {
+    transform: translateY(-2px);
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+/* Tooltip Styles (Default React-Tooltip CSS should be imported in the component or globally) */
+/* Assuming 'react-tooltip/dist/react-tooltip.css' is handled by npm install */

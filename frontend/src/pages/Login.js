@@ -1,116 +1,108 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Shield, AlertCircle } from 'react-feather';
-import authService from '../services/auth.service';
-import styles from '../styles/Login.module.css';
+import AuthService from '../services/auth.service';
+import './Login.css'; // <-- Import the new animated CSS
 
-// Animation variants for the form elements
-const formVariants = {
-  hidden: { opacity: 0, y: -30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-  exit: { opacity: 0, y: 30, transition: { duration: 0.3 } }
-};
+// --- Icons (using simple emojis for easy setup) ---
+const UserIcon = () => <span>👤</span>; 
+const LockIcon = () => <span>🔒</span>;
+const ShieldIcon = () => <span>🛡️</span>;
+// ---------------------------------------------------
 
-const inputVariants = {
-  hidden: { opacity: 0, x: -20 },
-  visible: (i) => ({ // Custom function to stagger animation
-    opacity: 1,
-    x: 0,
-    transition: { delay: i * 0.1, duration: 0.4 }
-  }),
-};
-
-const errorVariants = {
-  hidden: { opacity: 0, height: 0, marginTop: 0 },
-  visible: { opacity: 1, height: 'auto', marginTop: 15, transition: { duration: 0.3 } }
-};
-
-function Login() {
+const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    setError('');
-    setLoading(true);
+    e.preventDefault(); // Stop the form from reloading the page
+    setMessage('');
+    setLoading(true); // --- This triggers the "Logging in..." text
+
     try {
-      await authService.login(username, password);
-      // No navigation here, App.js handles redirect via PrivateRoute
-    } catch (err) {
-      setError(err.response?.data?.message || 'Login failed. Check credentials.');
-      setLoading(false); // Only set loading false on error
+      console.log('Attempting login...');
+      // Call the login function from auth.service.js
+      await AuthService.login(username, password);
+      
+      console.log('Login successful! Navigating to dashboard...');
+      
+      // --- THIS IS THE FIX for the "stuck" login ---
+      navigate('/dashboard'); 
+      // window.location.reload(); // Not always needed, navigate is cleaner
+
+    } catch (error) {
+      // Get the error message from the backend
+      const resMessage =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        "Login failed. Please check credentials."; // Default error
+
+      console.error("Login component error:", resMessage);
+      setMessage(resMessage); // --- This shows the error message
+      setLoading(false); // --- Stop the loading spinner
     }
-    // Don't setLoading(false) on success, let the redirect happen
   };
 
+  // This is the new, animated, and correctly aligned JSX
   return (
-    <div className={styles.container}>
-      <motion.form
-        onSubmit={handleLogin}
-        className={styles.form}
-        variants={formVariants}
-        initial="hidden"
-        animate="visible"
-        exit="exit" // Useful if Login page animates out
-      >
-        <motion.div className={styles.title} variants={inputVariants} custom={0}>
-            <Shield size={32} /> CrimeEye-Pro
-        </motion.div>
+    <div className="login-page">
+      <div className="login-container-new">
+        
+        <div className="login-title">
+          <span className="icon"><ShieldIcon /></span>
+          CrimeEye-Pro
+        </div>
+        
+        <form onSubmit={handleLogin} className="login-form-new">
+          
+          <div className="input-group">
+            <input
+              type="text"
+              className="input-field"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              autoComplete="username"
+            />
+            <span className="input-icon"><UserIcon /></span>
+          </div>
+          
+          <div className="input-group">
+            <input
+              type="password"
+              className="input-field"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              autoComplete="current-password"
+            />
+            <span className="input-icon"><LockIcon /></span>
+          </div>
 
-        <motion.input
-          variants={inputVariants} custom={1} // Stagger input 1
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-          autoComplete="username"
-        />
-        <motion.input
-          variants={inputVariants} custom={2} // Stagger input 2
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-          autoComplete="current-password"
-        />
-
-        <AnimatePresence>
-          {error && (
-            <motion.p
-              key="error-message"
-              className={styles.error}
-              variants={errorVariants}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-            >
-              <AlertCircle size={16} /> {error}
-            </motion.p>
+          {/* This part only shows if there is an error */}
+          {message && (
+            <div className="error-message" role="alert">
+              {message}
+            </div>
           )}
-        </AnimatePresence>
-
-        <motion.button
-          variants={inputVariants} custom={3} // Stagger button
-          type="submit"
-          className="btn btn-primary"
-          style={{ marginTop: error ? '5px' : '20px' }} // Adjust margin based on error
-          disabled={loading}
-          whileTap={{ scale: 0.98 }} // Add tap effect
-        >
-          {loading ? 'Logging in...' : 'Login'}
-        </motion.button>
-
-        <motion.p variants={inputVariants} custom={4} className={styles.toggleText}>
-          Don't have an account? <Link to="/register">Register</Link>
-        </motion.p>
-      </motion.form>
+          
+          <button type="submit" className="login-button" disabled={loading}>
+            {loading ? 'Logging in...' : 'Login'}
+          </button>
+          
+          <div className="register-link">
+            {/* You can create a /register route later */}
+            {/* Don't have an account? <Link to="/register">Register</Link> */}
+          </div>
+        </form>
+      </div>
     </div>
   );
-}
+};
+
 export default Login;

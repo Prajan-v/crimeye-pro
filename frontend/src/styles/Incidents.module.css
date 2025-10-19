@@ -12,10 +12,10 @@
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Adjust min size */
   gap: 25px; /* Consistent gap */
-  /* Allow grid to take height and scroll within main content area */
-  /* Height is managed by the main layout's overflow */
+  /* Allow grid to scroll within the main content area */
+  /* Height managed by Layout.module.css */
   padding-bottom: 30px; /* Padding at bottom of scroll */
 }
 .card {
@@ -23,14 +23,14 @@
   border-radius: 10px; /* Consistent radius */
   border: 1px solid #333;
   overflow: hidden;
-  transition: all 0.2s ease-out; /* Smoother hover */
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1); /* Smooth cubic bezier */
   box-shadow: 0 5px 15px var(--shadow-color);
   display: flex; /* Use flex for better control */
   flex-direction: column;
 }
 .card:hover {
-  transform: translateY(-5px) scale(1.02); /* Add scale effect */
-  box-shadow: 0 8px 25px rgba(0,0,0,0.4); /* Slightly stronger shadow on hover */
+  transform: translateY(-6px) scale(1.03); /* Slightly more pronounced hover */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4); /* Stronger shadow */
   border-color: var(--accent-gold);
 }
 .image {
@@ -40,14 +40,15 @@
   background-color: #000;
   display: block; /* Remove extra space */
   cursor: pointer; /* Indicate clickable image */
+  border-bottom: 1px solid #444; /* Separator */
 }
 .content {
-  padding: 20px;
-  flex-grow: 1; /* Allow content to fill space if card height varies */
+  padding: 15px 20px 20px 20px; /* Adjust padding */
+  flex-grow: 1; /* Allow content to fill space */
   display: flex;
   flex-direction: column;
 }
-.contentHeader { /* Renamed to avoid conflict */
+.contentHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,8 +71,10 @@
   overflow: hidden;
   text-overflow: ellipsis;
   margin-top: auto; /* Push report down if content is short */
+  flex-grow: 1; /* Take space */
 }
 .loadingText, .errorText, .noIncidentsText {
+  grid-column: 1 / -1; /* Span full grid width if empty */
   text-align: center;
   margin-top: 40px;
   font-size: 1.1rem;
@@ -79,4 +82,8 @@
 }
 .errorText {
   color: var(--accent-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }

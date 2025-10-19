@@ -1,40 +1,55 @@
 .layout {
   display: flex;
   height: 100vh;
+  background-color: var(--bg-dark); /* Ensure layout bg */
 }
 .sidebar {
   width: 250px;
+  flex-shrink: 0; /* Prevent sidebar shrinking */
   background-color: var(--bg-light);
   border-right: 1px solid #333;
   display: flex;
   flex-direction: column;
   padding: 20px;
+  box-shadow: 2px 0 10px var(--shadow-color);
+  z-index: 10; /* Keep sidebar above content during transitions */
+}
+.desktopSidebar { /* Class to hide on mobile */
+ /* CSS media query will handle display: none */
+}
+.mobileSidebar { /* Class to show only on mobile */
+  /* CSS media query will handle display: block */
+  position: fixed; /* Make it a drawer */
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 50; /* Above overlay */
 }
 .sidebarHeader {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px; /* Consistent gap */
   color: var(--accent-gold);
-  font-size: 1.5rem;
+  font-size: 1.6rem; /* Slightly larger */
   font-weight: 700;
   padding-bottom: 20px;
-  border-bottom: 1px solid #333;
+  margin-bottom: 20px; /* Space below header */
+  border-bottom: 1px solid #444; /* Slightly lighter border */
 }
 .nav {
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px; /* Consistent gap */
 }
 .navLink {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 12px 15px;
-  border-radius: 8px;
+  border-radius: 6px; /* Slightly softer radius */
   color: var(--text-secondary);
   font-weight: 500;
-  transition: all 0.2s ease;
+  transition: all 0.15s ease-out;
   border: 1px solid transparent;
 }
 .navLink:hover {
@@ -42,30 +57,74 @@
   background-color: var(--bg-surface);
 }
 .navLinkActive {
+  /* Use CSS Modules 'composes' for inheritance */
   composes: navLink;
   color: var(--accent-gold);
-  background-color: var(--bg-surface);
-  border: 1px solid var(--accent-gold);
+  background-color: rgba(212, 175, 55, 0.1); /* Subtle gold background */
+  border: 1px solid rgba(212, 175, 55, 0.3);
 }
 .footer {
-  margin-top: auto;
+  margin-top: auto; /* Push to bottom */
   padding-top: 20px;
-  border-top: 1px solid #333;
+  border-top: 1px solid #444;
 }
 .logoutButton {
+  /* Inherit navLink styles */
   composes: navLink;
   width: 100%;
   background: none;
   cursor: pointer;
-  border: none; /* Reset button border */
+  border: none; /* Override navLink border */
 }
 .logoutButton:hover {
   color: var(--accent-red);
-  background-color: rgba(229, 57, 53, 0.1);
+  background-color: rgba(229, 57, 53, 0.1); /* Subtle red background */
 }
 .mainContent {
-  flex: 1;
-  overflow-y: auto;
-  height: 100vh; /* Make sure content scrolls within its area */
-  padding: 30px;
+  flex: 1; /* Take remaining space */
+  overflow-y: auto; /* Enable vertical scrolling */
+  height: 100vh;
+  padding: 30px 40px; /* More horizontal padding */
+  position: relative; /* Needed for page transition animations */
+}
+.mobileNavToggle {
+  position: fixed; /* Fixed position for mobile toggle */
+  top: 15px;
+  left: 15px;
+  z-index: 30; /* Below mobile sidebar but above content */
+  background: var(--bg-surface);
+  border: 1px solid #444;
+  border-radius: 50%;
+  padding: 8px;
+  display: none; /* Hidden by default */
+  cursor: pointer;
+  color: var(--text-primary); /* Icon color */
+}
+.mobileNavCloseButton {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 5px; /* Easier to click */
+}
+.mobileNavOverlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 40; /* Below sidebar, above content */
+}
+
+/* Media Queries for Responsive Sidebar */
+@media (max-width: 768px) {
+  .desktopSidebar { display: none; }
+  .mobileNavToggle { display: block; }
+  .mainContent { padding: 20px; padding-top: 60px; } /* Adjust padding, add top space for button */
+}
+@media (min-width: 769px) {
+   .mobileSidebar { display: none !important; } /* Ensure mobile drawer is hidden */
+   .mobileNavToggle { display: none !important; }
+   .mobileNavOverlay { display: none !important; }
 }

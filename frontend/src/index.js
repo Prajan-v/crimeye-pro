@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css'; // Import global styles FIRST
 import App from './App'; // Import the main App component
 
-// Create the React root element
-const root = ReactDOM.createRoot(document.getElementById('root'));
+// Ensure the root element exists in your public/index.html
+const rootElement = document.getElementById('root');
+if (!rootElement) throw new Error('Failed to find the root element');
+
+// Create the React root
+const root = ReactDOM.createRoot(rootElement);
 
 // Render the application
 root.render(

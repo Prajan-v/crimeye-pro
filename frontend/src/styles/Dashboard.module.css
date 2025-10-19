@@ -92,6 +92,8 @@
   margin-bottom: 10px;
   height: 1.2em; /* Reserve space for status text */
   flex-shrink: 0;
+  display: flex; /* Align icon */
+  align-items: center;
 }
 .threatBadge {
   /* Use global .threat-badge class from index.css */
@@ -116,7 +118,13 @@
   flex-grow: 1; /* Take remaining space */
   overflow-y: auto; /* Scroll if analysis is long */
   padding-right: 5px; /* Space for scrollbar */
+  /* Improve scrollbar appearance */
+  scrollbar-width: thin;
+  scrollbar-color: var(--bg-surface) var(--bg-light);
 }
+.analysis::-webkit-scrollbar { width: 6px; }
+.analysis::-webkit-scrollbar-thumb { background-color: var(--bg-surface); border-radius: 3px; border: 1px solid var(--bg-light); }
+
 .incidentCard {
   composes: liveCard; /* Inherit card styles */
   display: flex; /* Enable flex for header/list */
@@ -131,6 +139,7 @@
 .incidentItem {
   border-bottom: 1px solid #444; /* Lighter border */
   padding: 15px 0;
+  /* Add padding-left via style prop for border */
 }
 .incidentHeader {
   display: flex;
@@ -164,4 +173,22 @@
   aspect-ratio: 16 / 9; /* Maintain aspect ratio */
   object-fit: cover;
   border: 1px solid #333; /* Subtle border */
+}
+
+/* Media Queries for Dashboard */
+@media (max-width: 900px) { /* Adjust breakpoint as needed */
+  .grid {
+    grid-template-columns: 1fr; /* Stack columns */
+    height: auto; /* Allow height to adjust */
+  }
+  .liveGrid {
+     grid-template-columns: 1fr; /* Stack video and analysis */
+  }
+  .analystPanel {
+     margin-top: 20px; /* Add space when stacked */
+  }
+  .incidentCard {
+      height: 50vh; /* Give history fixed height on mobile */
+      margin-top: 20px;
+  }
 }

@@ -1,91 +1,70 @@
-import React, { useState, useEffect } from 'react';
-import apiService from '../services/api.service';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Tooltip } from 'react-tooltip'; // Assuming react-tooltip is installed or use title attribute
-import 'react-tooltip/dist/react-tooltip.css'; // Import tooltip styles if needed
+import { Database, Zap, Cpu, AlertTriangle, CheckCircle, Loader } from 'react-feather';
+import { Tooltip } from 'react-tooltip';
+import apiService from '../services/api.service';
+import '../styles/SystemStatus.css'; // Will create this next
 
-const StatusDot = ({ status, serviceName }) => {
-  const isOnline = status === 'online';
-  const color = isOnline ? 'var(--accent-green)' : 'var(--accent-red)';
-  const tooltipId = `tooltip-${serviceName}`;
-
-  return (
-    <>
-      <motion.div
-        data-tooltip-id={tooltipId}
-        data-tooltip-content={isOnline ? `${serviceName}: Online` : `${serviceName}: Offline/Error`}
-        style={{
-          width: 10, height: 10, borderRadius: '50%',
-          marginRight: 8,
-          backgroundColor: color,
-        }}
-        animate={isOnline ? {
-          scale: [1, 1.2, 1],
-          opacity: [0.7, 1, 0.7],
-        } : { scale: 1, opacity: 0.6 }} // Dim offline dots
-        transition={isOnline ? {
-          duration: 1.5,
-          repeat: Infinity,
-          ease: "easeInOut"
-        } : { duration: 0 }}
-      />
-      <Tooltip id={tooltipId} place="bottom" effect="solid" style={{ fontSize: '0.8rem', padding: '4px 8px', backgroundColor: '#333' }}/>
-    </>
-  );
+const serviceMap = {
+    database: { icon: Database, color: 'var(--accent-blue)' },
+    yolo_service: { icon: Zap, color: 'var(--threat-high)' },
+    ollama_service: { icon: Cpu, color: 'var(--accent-gold)' },
 };
 
-function SystemStatus() {
-  const [health, setHealth] = useState({
-    database: 'offline', yolo_service: 'offline', ollama_service: 'offline'
-  });
-  const [loading, setLoading] = useState(true);
+const getStatusIcon = (status) => {
+    switch (status) {
+        case 'online':
+            return <CheckCircle size={18} color="var(--accent-green)" />;
+        case 'offline':
+            return <AlertTriangle size={18} color="var(--threat-critical)" />;
+        default:
+            return <Loader size={18} color="var(--text-secondary)" className="spin" />;
+    }
+};
 
-  useEffect(() => {
-    let isMounted = true;
-    const checkHealth = async () => {
-      if (!isMounted) return;
-      setLoading(true); // Indicate loading on each poll
-      try {
-        const res = await apiService.getSystemHealth();
-        if (isMounted) setHealth(res.data);
-      } catch (e) {
-        console.warn("Health check failed:", e.message);
-        // Keep previous state or reset if preferred
-        if (isMounted) setHealth({ database: 'offline', yolo_service: 'offline', ollama_service: 'offline' });
-      } finally {
-        if (isMounted) setLoading(false);
-      }
+const SystemStatus = () => {
+    const [health, setHealth] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    const fetchHealth = async () => {
+        setLoading(true);
+        const data = await apiService.getSystemHealth();
+        setHealth(data);
+        setLoading(false);
     };
 
-    checkHealth(); // Initial check
-    const interval = setInterval(checkHealth, 7000); // Poll every 7 seconds
+    useEffect(() => {
+        fetchHealth();
+        const interval = setInterval(fetchHealth, 10000); // Poll every 10 seconds
+        return () => clearInterval(interval);
+    }, []);
 
-    return () => {
-      isMounted = false;
-      clearInterval(interval);
-    };
-  }, []);
+    return (
+        <>
+            <motion.div 
+                className="system-status-container"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+            >
+                {Object.entries(serviceMap).map(([key, { icon: Icon, color }]) => (
+                    <motion.div 
+                        key={key} 
+                        className="status-item"
+                        data-tooltip-id="status-tooltip"
+                        data-tooltip-content={\`${key.toUpperCase().replace('_', ' ')} is \${health[key] || 'checking...'}\`}
+                    >
+                        <Icon size={20} color={color} />
+                        <span style={{ color: health[key] === 'online' ? 'var(--accent-green)' : health[key] === 'offline' ? 'var(--threat-critical)' : 'var(--text-secondary)' }}>
+                            {key.toUpperCase().split('_')[0]}
+                        </span>
+                        {getStatusIcon(health[key])}
+                    </motion.div>
+                ))}
+            </motion.div>
+            <Tooltip id="status-tooltip" effect="solid" />
+        </>
+    );
+};
 
-  const statusStyle = {
-    display: 'flex',
-    alignItems: 'center',
-    opacity: loading ? 0.5 : 1, // Dim while loading next status
-    transition: 'opacity 0.3s ease',
-  };
-
-  return (
-    <div style={{ display: 'flex', gap: 20, fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-      <div style={statusStyle} title={`Database: ${health.database}`}>
-        <StatusDot status={health.database} serviceName="Database" /> DB
-      </div>
-      <div style={statusStyle} title={`YOLO Service: ${health.yolo_service}`}>
-        <StatusDot status={health.yolo_service} serviceName="YOLO" /> YOLO
-      </div>
-      <div style={statusStyle} title={`LLM Analyst: ${health.ollama_service}`}>
-        <StatusDot status={health.ollama_service} serviceName="LLM" /> LLM
-      </div>
-    </div>
-  );
-}
-// Install react-tooltip if you use it: npm install react-tooltip
 export default SystemStatus;

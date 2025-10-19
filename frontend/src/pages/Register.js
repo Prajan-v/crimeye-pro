@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion'; // Ensure AnimatePresence is imported
 import { Shield, AlertCircle } from 'react-feather';
 import authService from '../services/auth.service';
 import styles from '../styles/Login.module.css'; // Re-use login styles
@@ -22,8 +22,8 @@ const inputVariants = {
 };
 
 const errorVariants = {
-  hidden: { opacity: 0, height: 0, marginTop: 0 },
-  visible: { opacity: 1, height: 'auto', marginTop: 15, transition: { duration: 0.3 } }
+  hidden: { opacity: 0, height: 0, marginTop: 0, marginBottom: 0 },
+  visible: { opacity: 1, height: 'auto', marginTop: 15, marginBottom: 5, transition: { duration: 0.3 } }
 };
 
 function Register() {
@@ -31,7 +31,7 @@ function Register() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Keep navigate if needed later
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -45,7 +45,8 @@ function Register() {
       await authService.register(username, password);
       // On successful registration, log them in automatically
       await authService.login(username, password);
-      // No navigation needed, App.js handles redirect
+      // Let App.js handle navigation
+      // navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Registration failed. Try a different username.');
       setLoading(false); // Only set loading false on error
