@@ -1,10 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const { analyzeFrame, getDetections } = require('../controllers/analysisController');
+const analysisController = require('../controllers/analysisController');
 const authMiddleware = require('../middleware/auth');
 
 // Note: express.json({limit: '10mb'}) in server.js handles the large base64 payload
-router.post('/frame', authMiddleware, analyzeFrame);
-router.get('/detections', authMiddleware, getDetections);
+
+// Route for sending a live frame for detection/deduction
+router.post('/frame', authMiddleware, analysisController.analyzeFrame);
+
+// Route for fetching historical detections (Incident Log)
+router.get('/detections', authMiddleware, analysisController.getDetections);
+
+// NEW ROUTE: Fetch data for stats cards and charts (Dashboard)
+router.get('/stats', authMiddleware, analysisController.getAnalyticsStats);
 
 module.exports = router;
