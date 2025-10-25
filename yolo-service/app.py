@@ -80,3 +80,4 @@ if __name__ == '__main__':
     print("✅ Routes: /yolo-health, /detect-frame")
     print("="*50 + "\n")
     app.run(host='0.0.0.0', port=5002, debug=False)
+

@@ -1,17 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const analysisController = require('../controllers/analysisController');
-const authMiddleware = require('../middleware/auth');
 
-// Note: express.json({limit: '10mb'}) in server.js handles the large base64 payload
+// This route will be triggered by the Python service
+router.post('/report_detection', analysisController.reportDetection);
 
-// Route for sending a live frame for detection/deduction
-router.post('/frame', authMiddleware, analysisController.analyzeFrame);
-
-// Route for fetching historical detections (Incident Log)
-router.get('/detections', authMiddleware, analysisController.getDetections);
-
-// NEW ROUTE: Fetch data for stats cards and charts (Dashboard)
-router.get('/stats', authMiddleware, analysisController.getAnalyticsStats);
+// This route will be fetched by the React frontend
+router.get('/detections', analysisController.getDetections);
 
 module.exports = router;

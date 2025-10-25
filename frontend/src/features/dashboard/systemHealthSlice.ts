@@ -3,9 +3,7 @@ import { RootState } from '../../app/store';
 import { SystemHealth, SystemHealthState } from '../../common/types';
 import { fetchSystemHealthAPI } from './systemHealthAPI';
 import { logout } from '../auth/authSlice';
-
 const initialState: SystemHealthState = { status: null, loading: false, error: null };
-
 export const fetchSystemHealth = createAsyncThunk<SystemHealth, void, { rejectValue: string }>(
   'systemHealth/fetchSystemHealth',
   async (_arg: void, { rejectWithValue }) => {
@@ -16,7 +14,6 @@ export const fetchSystemHealth = createAsyncThunk<SystemHealth, void, { rejectVa
     }
   }
 );
-
 const systemHealthSlice = createSlice({
   name: 'systemHealth',
   initialState,
@@ -39,7 +36,6 @@ const systemHealthSlice = createSlice({
       });
   },
 });
-
 export const selectSystemHealth = (state: RootState) => state.systemHealth.status;
 export const selectSystemHealthLoading = (state: RootState) => state.systemHealth.loading;
 export const selectSystemHealthError = (state: RootState) => state.systemHealth.error;

@@ -5,14 +5,15 @@ import { fetchIncidentsAPI } from './incidentsAPI';
 import { logout } from '../auth/authSlice';
 
 const MAX_INCIDENTS_IN_STATE = 100;
-
 const initialState: DetectionsState = { detections: [], status: 'idle', error: null };
 
-export const fetchIncidents = createAsyncThunk<AiDetection[], number | void, { rejectValue: string }>(
+// FIX: Changed thunk arg type from 'number | void' to 'number | undefined'
+export const fetchIncidents = createAsyncThunk<AiDetection[], number | undefined, { rejectValue: string }>(
   'incidents/fetchIncidents',
-  async (limit = 50, { rejectWithValue }) => {
+  // FIX: Removed default 'limit = 50' and added 'limit ?? 50' inside
+  async (limit, { rejectWithValue }) => {
     try {
-      return await fetchIncidentsAPI(limit);
+      return await fetchIncidentsAPI(limit ?? 50);
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || error.message || 'Failed to fetch incidents');
     }
