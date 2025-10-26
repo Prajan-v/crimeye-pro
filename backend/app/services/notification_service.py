@@ -1,4 +1,5 @@
 import asyncio
+import os
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
 from twilio.rest import Client as TwilioClient
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -7,7 +8,7 @@ from typing import Optional
 from uuid import UUID
 from datetime import datetime
 from app.core.config import settings
-from app.core.database import get_db
+from app.core.database import AsyncSessionLocal
 from app.models.alert import Alert
 from app.models.detection_frame import DetectionFrame
 from app.models.camera import Camera
@@ -48,7 +49,7 @@ class NotificationService:
         """Send alert notification via email and/or SMS."""
         try:
             # Get frame and camera information
-            async with get_db() as db:
+            async with AsyncSessionLocal() as db:
                 result = await db.execute(
                     select(DetectionFrame, Camera)
                     .join(Camera, DetectionFrame.camera_id == Camera.id)
@@ -83,7 +84,8 @@ class NotificationService:
                         location=camera.location,
                         threat_level=frame.threat_level,
                         message=message,
-                        timestamp=frame.timestamp
+                        timestamp=frame.timestamp,
+                        frame_data=frame.frame_data
                     )
                     success = success and email_success
                 
@@ -105,23 +107,60 @@ class NotificationService:
         location: Optional[str],
         threat_level: str,
         message: str,
-        timestamp: datetime
+        timestamp: datetime,
+        frame_data: Optional[bytes] = None
     ) -> bool:
-        """Send email alert."""
+        """Send email alert with threat image."""
         try:
             subject = f"CrimeEye Alert - {threat_level.upper()} Threat Detected"
             
+            # Check if threat image data exists
+            image_html = ""
+            if frame_data:
+                # Save frame data to temporary file for email attachment
+                import tempfile
+                with tempfile.NamedTemporaryFile(delete=False, suffix='.jpg') as temp_file:
+                    temp_file.write(frame_data)
+                    temp_path = temp_file.name
+                
+                # Convert to absolute path for email attachment
+                abs_frame_path = os.path.abspath(temp_path)
+                image_html = f"""
+                <div style="margin: 20px 0;">
+                    <h3>Threat Detection Image:</h3>
+                    <img src="file://{abs_frame_path}" alt="Threat Detection" style="max-width: 100%; height: auto; border: 2px solid #ff4444;">
+                    <p><em>Image captured at {timestamp.strftime('%Y-%m-%d %H:%M:%S UTC')}</em></p>
+                </div>
+                """
+                
+                # Clean up temp file after email is sent
+                try:
+                    os.unlink(temp_path)
+                except:
+                    pass
+            
             body = f"""
             <html>
-            <body>
-                <h2>🚨 CrimeEye Security Alert</h2>
-                <p><strong>Threat Level:</strong> {threat_level.upper()}</p>
-                <p><strong>Camera:</strong> {camera_name}</p>
-                <p><strong>Location:</strong> {location or 'Unknown'}</p>
-                <p><strong>Message:</strong> {message}</p>
-                <p><strong>Time:</strong> {timestamp.strftime('%Y-%m-%d %H:%M:%S UTC')}</p>
-                <hr>
-                <p><em>This is an automated alert from CrimeEye-Pro Security System.</em></p>
+            <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                    <h2 style="color: #ff4444;">🚨 CrimeEye Security Alert</h2>
+                    
+                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+                        <p><strong>Threat Level:</strong> <span style="color: #ff4444; font-weight: bold;">{threat_level.upper()}</span></p>
+                        <p><strong>Camera:</strong> {camera_name}</p>
+                        <p><strong>Location:</strong> {location or 'Unknown'}</p>
+                        <p><strong>Message:</strong> {message}</p>
+                        <p><strong>Time:</strong> {timestamp.strftime('%Y-%m-%d %H:%M:%S UTC')}</p>
+                    </div>
+                    
+                    {image_html}
+                    
+                    <hr style="margin: 30px 0;">
+                    <p style="color: #666; font-size: 12px;">
+                        <em>This is an automated alert from CrimeEye-Pro Security System.</em><br>
+                        <em>Please review this alert and take appropriate action if necessary.</em>
+                    </p>
+                </div>
             </body>
             </html>
             """

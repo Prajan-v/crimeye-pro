@@ -9,12 +9,16 @@ import time
 import os
 
 from app.core.config import settings
-from app.core.database import async_engine, Base
+from app.core.database import async_engine, Base, AsyncSessionLocal
 from app.routers import auth, cameras, analytics
 from app.services.cleanup_service import cleanup_service
 from app.services.yolo_integration import yolo_integration
 from app.services.websocket_manager import manager
+from app.services.webcam_service import webcam_service
 from app.middleware.rate_limit import general_rate_limit
+from app.cli import create_default_webcam
+from app.models.camera import Camera
+from sqlalchemy import select
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -43,6 +47,32 @@ async def lifespan(app: FastAPI):
     os.makedirs("static/detections", exist_ok=True)
     logger.info("✅ Static directories created")
     
+    # Initialize default webcam camera and stream
+    try:
+        async with AsyncSessionLocal() as session:
+            # Create default webcam camera if it doesn't exist
+            webcam_camera = await create_default_webcam(session)
+            
+            if webcam_camera and settings.ENABLE_DEFAULT_WEBCAM:
+                # Start FFmpeg stream
+                stream_started = await webcam_service.start_ffmpeg_stream()
+                
+                if stream_started:
+                    # Update camera status to online
+                    webcam_camera.status = "online"
+                    await session.commit()
+                    logger.info("✅ Default webcam camera is online")
+                else:
+                    # Keep camera offline if stream failed
+                    webcam_camera.status = "offline"
+                    await session.commit()
+                    logger.warning("⚠️  Default webcam camera is offline (stream failed)")
+            else:
+                logger.info("ℹ️  Default webcam is disabled or not available")
+                
+    except Exception as e:
+        logger.error(f"❌ Error initializing default webcam: {e}")
+    
     logger.info(f"✅ CrimeEye-Pro FastAPI Backend running on port {settings.FASTAPI_PORT}")
     logger.info(f"📡 WebSocket endpoint: ws://localhost:{settings.FASTAPI_PORT}/ws")
     logger.info(f"📚 API Documentation: http://localhost:{settings.FASTAPI_PORT}/docs")
@@ -53,6 +83,14 @@ async def lifespan(app: FastAPI):
     logger.info("🛑 Shutting down CrimeEye-Pro Backend...")
     await cleanup_service.stop()
     await yolo_integration.close()
+    
+    # Stop webcam stream
+    try:
+        await webcam_service.stop_ffmpeg_stream()
+        logger.info("✅ Webcam stream stopped")
+    except Exception as e:
+        logger.error(f"❌ Error stopping webcam stream: {e}")
+    
     logger.info("✅ CrimeEye-Pro Backend shutdown complete")
 
 # Create FastAPI application

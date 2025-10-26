@@ -114,6 +114,13 @@ async def delete_camera(
             detail="Camera not found"
         )
     
+    # Prevent deletion of system cameras
+    if camera.is_system_camera:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot delete system cameras"
+        )
+    
     await db.delete(camera)
     await db.commit()
     

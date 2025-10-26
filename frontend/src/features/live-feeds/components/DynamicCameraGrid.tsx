@@ -8,11 +8,8 @@ import CameraFeed from './CameraFeed';
 // import { useWebSocket } from '../../../services/socket.middleware';
 
 // TODO: Implement camera state management in dashboardSlice
-// For now, using mock data
-const mockCameras = [
-  { id: 'cam1', name: 'Camera 1', status: 'online' as const, url: '/api/camera/cam1/stream' },
-  { id: 'cam2', name: 'Camera 2', status: 'online' as const, url: '/api/camera/cam2/stream' },
-];
+// For now, using empty array to show no cameras until real ones are added
+const mockCameras: any[] = [];
 
 // Grid container with responsive layout
 const GridContainer = styled(motion.div)<{ cameraCount: number }>`

@@ -53,8 +53,17 @@ class Settings(BaseSettings):
     NODEJS_PORT: int = 5001
     YOLO_PORT: int = 5002
     
+    # Default Webcam Configuration
+    ENABLE_DEFAULT_WEBCAM: bool = True
+    DEFAULT_WEBCAM_NAME: str = "Mac Webcam"
+    DEFAULT_WEBCAM_RTSP_URL: str = "rtsp://localhost:8554/demo"
+    DEFAULT_WEBCAM_LOCATION: str = "Demo Room"
+    WEBCAM_DEVICE_ID: str = "0"  # FaceTime HD Camera
+    WEBCAM_RTSP_PORT: int = 8554
+    
     class Config:
         env_file = ".env"
+        extra = "ignore"  # Ignore extra fields in .env file
 
 
 settings = Settings()

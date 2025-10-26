@@ -71,6 +71,7 @@ class CameraUpdate(BaseModel):
 class CameraResponse(CameraBase):
     id: UUID
     status: str
+    is_system_camera: bool
     created_at: datetime
 
     class Config:

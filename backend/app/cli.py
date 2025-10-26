@@ -6,7 +6,9 @@ import sys
 from sqlalchemy import select
 from app.core.database import async_engine, AsyncSessionLocal, Base
 from app.core.security import get_password_hash
+from app.core.config import settings
 from app.models.admin_user import AdminUser
+from app.models.camera import Camera
 import logging
 
 logging.basicConfig(level=logging.INFO)
@@ -57,6 +59,43 @@ async def create_admin_user(username: str, email: str, password: str, phone: str
         logger.error(f"❌ Error creating admin user: {e}")
         return False
 
+async def create_default_webcam(session):
+    """Create default webcam camera if it doesn't exist."""
+    try:
+        # Check if default webcam already exists
+        result = await session.execute(
+            select(Camera).where(Camera.name == settings.DEFAULT_WEBCAM_NAME)
+        )
+        existing_camera = result.scalar_one_or_none()
+        
+        if existing_camera:
+            logger.info(f"✅ Default webcam camera already exists: {existing_camera.name}")
+            return existing_camera
+        
+        # Create new default webcam camera
+        webcam_camera = Camera(
+            name=settings.DEFAULT_WEBCAM_NAME,
+            rtsp_url=settings.DEFAULT_WEBCAM_RTSP_URL,
+            location=settings.DEFAULT_WEBCAM_LOCATION,
+            status="offline",  # Will be updated by webcam service
+            is_system_camera=True  # Mark as system camera
+        )
+        
+        session.add(webcam_camera)
+        await session.commit()
+        await session.refresh(webcam_camera)
+        
+        logger.info(f"✅ Default webcam camera created successfully")
+        logger.info(f"   Name: {webcam_camera.name}")
+        logger.info(f"   RTSP URL: {webcam_camera.rtsp_url}")
+        logger.info(f"   Location: {webcam_camera.location}")
+        logger.info(f"   Camera ID: {webcam_camera.id}")
+        return webcam_camera
+        
+    except Exception as e:
+        logger.error(f"❌ Error creating default webcam camera: {e}")
+        return None
+
 async def init_database():
     """Initialize database with tables and admin user."""
     logger.info("🚀 Initializing CrimeEye-Pro database...")
@@ -73,6 +112,10 @@ async def init_database():
         phone="+917010132407"
     ):
         logger.info("ℹ️  Skipping admin user creation (already exists)")
+    
+    # Create default webcam camera
+    async with AsyncSessionLocal() as session:
+        await create_default_webcam(session)
     
     logger.info("✅ Database initialization complete!")
     return True
@@ -100,6 +143,10 @@ async def reset_database():
             password="CrimeEye@",
             phone="+917010132407"
         )
+        
+        # Recreate default webcam camera
+        async with AsyncSessionLocal() as session:
+            await create_default_webcam(session)
         
         logger.info("✅ Database reset complete!")
         return True

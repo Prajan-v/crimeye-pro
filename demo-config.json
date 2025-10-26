@@ -1,0 +1,72 @@
+{
+  "demo_cameras": [
+    {
+      "name": "Demo Webcam",
+      "rtsp_url": "rtsp://localhost:8554/demo",
+      "location": "Demo Room",
+      "description": "Mac FaceTime HD Camera for CrimeEye-Pro demonstration",
+      "stream_settings": {
+        "resolution": "1280x720",
+        "fps": 15,
+        "quality": "optimized",
+        "latency": "low"
+      }
+    }
+  ],
+  "demo_scenarios": [
+    {
+      "name": "Object Detection Demo",
+      "description": "Show various objects being detected by YOLO",
+      "objects_to_demonstrate": [
+        "person",
+        "cell phone",
+        "laptop",
+        "book",
+        "bottle",
+        "cup"
+      ]
+    },
+    {
+      "name": "Threat Detection Demo",
+      "description": "Demonstrate threat level classification",
+      "high_threat_objects": [
+        "knife",
+        "gun",
+        "weapon"
+      ],
+      "medium_threat_objects": [
+        "person with suspicious behavior",
+        "unusual movement patterns"
+      ]
+    },
+    {
+      "name": "Real-time Analytics Demo",
+      "description": "Show live analytics dashboard",
+      "features": [
+        "Detection counts",
+        "Threat distribution",
+        "Camera uptime",
+        "Real-time charts"
+      ]
+    }
+  ],
+  "demo_presentation_flow": [
+    "1. Login to CrimeEye-Pro (CrimeEye / CrimeEye@)",
+    "2. Show Dashboard with real-time statistics",
+    "3. Navigate to Live Feeds to show webcam",
+    "4. Demonstrate object detection with various items",
+    "5. Show Frame Gallery with captured detections",
+    "6. Display Analytics Dashboard with charts",
+    "7. Test Settings page and camera management",
+    "8. Show WebSocket real-time updates"
+  ],
+  "technical_specs": {
+    "webcam": "FaceTime HD Camera",
+    "resolution": "1280x720",
+    "codec": "H.264",
+    "stream_protocol": "RTSP",
+    "yolo_model": "YOLOv8n",
+    "detection_classes": 80,
+    "threat_levels": ["Low", "Medium", "High"]
+  }
+}
