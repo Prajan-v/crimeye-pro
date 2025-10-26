@@ -49,6 +49,10 @@ console.log(`✅ Serving static files from: ${staticPath}`);
 // Mount routers AFTER core middleware
 console.log("🛠️ Attempting to mount API routes...");
 try {
+  // Set socket.io instance in analysisController before mounting routes
+  const analysisController = require('./controllers/analysisController');
+  analysisController.setSocketIo(io);
+  
   app.use('/api/auth', require('./routes/auth'));
   app.use('/api/system', require('./routes/system'));
   app.use('/api/analysis', require('./routes/analysis'));

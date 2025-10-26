@@ -1,4 +1,11 @@
-const { io } = require('../../server'); // Import io from server.js
+// Socket.io instance will be passed via dependency injection or accessed globally
+// We'll make this controller work with io passed as parameter for now
+let socketIo = null;
+
+// Set the io instance (called from server.js)
+exports.setSocketIo = (io) => {
+  socketIo = io;
+};
 
 // In-memory store for detections (replace with DB later)
 let allDetections = [];
@@ -23,7 +30,9 @@ exports.reportDetection = async (req, res) => {
     }
 
     // EMIT to all connected React clients
-    io.emit('new_detection', newDetection);
+    if (socketIo) {
+      socketIo.emit('new_detection', newDetection);
+    }
 
     res.status(200).json({ message: 'Detection reported successfully' });
 
