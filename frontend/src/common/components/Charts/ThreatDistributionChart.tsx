@@ -80,9 +80,7 @@ const LegendDot = styled.span<{ $color: string }>`
   border-radius: 50%;
   background: ${({ $color }) => $color};
   box-shadow: 0 0 8px ${({ $color }) => $color}60;
-  ${({ $color }) => $color === '#FF3B30' && `
-    ${({ theme }) => theme.animations.pulse}
-  `}
+  ${({ $color, theme }) => ($color === '#FF3B30' ? theme.animations.pulse : '')}
 `;
 
 const RenderLegend: React.FC<any> = (props) => {

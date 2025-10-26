@@ -182,8 +182,8 @@ const AdminPanel: React.FC = () => {
 
   const fetchPendingUsers = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch('/api/auth/pending', {
+      const token = localStorage.getItem('crimeeye_token');
+      const response = await fetch('http://localhost:5001/api/auth/pending', {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
@@ -206,8 +206,8 @@ const AdminPanel: React.FC = () => {
 
   const handleApproveUser = async (userId: number) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`/api/auth/approve/${userId}`, {
+      const token = localStorage.getItem('crimeeye_token');
+      const response = await fetch(`http://localhost:5001/api/auth/approve/${userId}`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -233,8 +233,8 @@ const AdminPanel: React.FC = () => {
     }
     
     try {
-      const token = localStorage.getItem('token');
-      const response = await fetch(`/api/auth/reject/${userId}`, {
+      const token = localStorage.getItem('crimeeye_token');
+      const response = await fetch(`http://localhost:5001/api/auth/reject/${userId}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,

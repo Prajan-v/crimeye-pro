@@ -4,12 +4,14 @@ import authReducer from '../features/auth/authSlice';
 import incidentsReducer from '../features/incidents/incidentsSlice';
 import dashboardReducer from '../features/dashboard/dashboardSlice';
 import systemHealthReducer from '../features/dashboard/systemHealthSlice';
+import liveFeedsReducer from '../features/live-feeds/liveFeedsSlice';
 import { socketMiddleware } from '../services/socket.middleware';
 const rootReducer = combineReducers({
   auth: authReducer,
   incidents: incidentsReducer,
   dashboard: dashboardReducer,
   systemHealth: systemHealthReducer,
+  liveFeeds: liveFeedsReducer,
 });
 export type RootState = ReturnType<typeof rootReducer>;
 const typedSocketMiddleware: Middleware<{}, RootState> = socketMiddleware;

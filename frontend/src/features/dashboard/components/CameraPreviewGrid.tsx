@@ -101,9 +101,7 @@ const Placeholder = styled.div<{ $status: 'live' | 'offline' }>`
     opacity: 0.9;
     text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     box-shadow: 0 0 10px ${({ theme, $status }) => $status === 'live' ? theme.colors.glowSuccess : 'transparent'};
-    ${({ $status }) => $status === 'live' && `
-      ${({ theme }) => theme.animations.pulse}
-    `}
+    ${({ $status, theme }) => ($status === 'live' ? theme.animations.pulse : '')}
   }
 `;
 const InfoBar = styled.div`

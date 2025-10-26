@@ -1,15 +1,9 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
-import { Camera, Maximize2, Camera as CameraIcon, Wifi, WifiOff, AlertCircle, Play, Pause } from 'react-feather';
-import { useAppSelector } from '../../../app/hooks';
-// import { selectCameras, selectCameraStatus } from '../../dashboard/dashboardSlice';
+import { Camera, Wifi, WifiOff, AlertCircle } from 'react-feather';
 import CameraFeed from './CameraFeed';
 // import { useWebSocket } from '../../../services/socket.middleware';
-
-// TODO: Implement camera state management in dashboardSlice
-// For now, using empty array to show no cameras until real ones are added
-const mockCameras: any[] = [];
 
 // Grid container with responsive layout
 const GridContainer = styled(motion.div)<{ cameraCount: number }>`
@@ -114,88 +108,6 @@ const StatusIndicator = styled(motion.div)<{ status: 'online' | 'offline' | 'err
   color: ${({ theme }) => theme.colors.background.primary};
 `;
 
-// FPS counter
-const FPSCounter = styled(motion.div)`
-  position: absolute;
-  top: ${({ theme }) => theme.spacing.sm};
-  left: ${({ theme }) => theme.spacing.sm};
-  background: ${({ theme }) => theme.colors.background.elevated};
-  color: ${({ theme }) => theme.colors.text.primary};
-  padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
-  border-radius: ${({ theme }) => theme.borderRadius.sm};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  font-weight: 600;
-  z-index: 10;
-`;
-
-// Recording indicator
-const RecordingIndicator = styled(motion.div)`
-  position: absolute;
-  top: ${({ theme }) => theme.spacing.sm};
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  gap: ${({ theme }) => theme.spacing.xs};
-  background: ${({ theme }) => theme.colors.status.error};
-  color: ${({ theme }) => theme.colors.background.primary};
-  padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
-  border-radius: ${({ theme }) => theme.borderRadius.full};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
-  font-weight: 500;
-  z-index: 10;
-  
-  &::before {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background: ${({ theme }) => theme.colors.background.primary};
-    border-radius: 50%;
-    animation: pulse 1s infinite;
-  }
-`;
-
-// Control buttons
-const ControlButtons = styled(motion.div)`
-  position: absolute;
-  bottom: ${({ theme }) => theme.spacing.sm};
-  right: ${({ theme }) => theme.spacing.sm};
-  display: flex;
-  gap: ${({ theme }) => theme.spacing.sm};
-  z-index: 10;
-`;
-
-const ControlButton = styled(motion.button)<{ variant?: 'primary' | 'secondary' }>`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: ${({ theme }) => theme.borderRadius.md};
-  border: none;
-  cursor: pointer;
-  transition: all ${({ theme }) => theme.transitions.fast};
-  
-  background: ${({ variant, theme }) => 
-    variant === 'primary' 
-      ? theme.colors.accent.primary 
-      : theme.colors.background.elevated};
-  
-  color: ${({ variant, theme }) => 
-    variant === 'primary' 
-      ? theme.colors.background.primary 
-      : theme.colors.text.primary};
-  
-  &:hover {
-    transform: scale(1.1);
-    box-shadow: ${({ theme }) => theme.shadows.md};
-  }
-  
-  &:active {
-    transform: scale(0.95);
-  }
-`;
-
 // Connection status overlay
 const ConnectionOverlay = styled(motion.div)`
   position: absolute;
@@ -234,45 +146,13 @@ interface CameraData {
 interface DynamicCameraGridProps {
   cameras: CameraData[];
   onCameraClick?: (camera: CameraData) => void;
-  onFullscreen?: (camera: CameraData) => void;
-  onSnapshot?: (camera: CameraData) => void;
 }
 
 const DynamicCameraGrid: React.FC<DynamicCameraGridProps> = ({
   cameras,
   onCameraClick,
-  onFullscreen,
-  onSnapshot,
 }) => {
   const [selectedCamera, setSelectedCamera] = useState<string | null>(null);
-  const [fpsData, setFpsData] = useState<Record<string, number>>({});
-  const [recordingState, setRecordingState] = useState<Record<string, boolean>>({});
-  
-  // WebSocket connection for real-time updates
-  // TODO: Implement proper useWebSocket hook
-  const socket = null;
-  const isConnected = false;
-  
-  // Update FPS data from WebSocket
-  useEffect(() => {
-    if (socket) {
-      const handleFPSUpdate = (data: { cameraId: string; fps: number }) => {
-        setFpsData(prev => ({ ...prev, [data.cameraId]: data.fps }));
-      };
-      
-      const handleRecordingUpdate = (data: { cameraId: string; isRecording: boolean }) => {
-        setRecordingState(prev => ({ ...prev, [data.cameraId]: data.isRecording }));
-      };
-      
-      socket.on('fps_update', handleFPSUpdate);
-      socket.on('recording_update', handleRecordingUpdate);
-      
-      return () => {
-        socket.off('fps_update', handleFPSUpdate);
-        socket.off('recording_update', handleRecordingUpdate);
-      };
-    }
-  }, [socket]);
   
   // Get grid layout based on camera count
   const gridLayout = useMemo(() => {
@@ -305,26 +185,6 @@ const DynamicCameraGrid: React.FC<DynamicCameraGridProps> = ({
     setSelectedCamera(camera.id);
     onCameraClick?.(camera);
   }, [onCameraClick]);
-  
-  const handleFullscreen = useCallback((camera: CameraData) => {
-    onFullscreen?.(camera);
-  }, [onFullscreen]);
-  
-  const handleSnapshot = useCallback((camera: CameraData) => {
-    onSnapshot?.(camera);
-  }, [onSnapshot]);
-  
-  const handleToggleRecording = useCallback((camera: CameraData) => {
-    setRecordingState(prev => ({
-      ...prev,
-      [camera.id]: !prev[camera.id]
-    }));
-    
-    // Emit recording toggle event
-    if (socket) {
-      socket.emit('toggle_recording', { cameraId: camera.id });
-    }
-  }, [socket]);
   
   if (cameras.length === 0) {
     return (
@@ -381,28 +241,7 @@ const DynamicCameraGrid: React.FC<DynamicCameraGridProps> = ({
               {camera.status.toUpperCase()}
             </StatusIndicator>
             
-            {/* FPS counter */}
-            {fpsData[camera.id] && (
-              <FPSCounter
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                {fpsData[camera.id]} FPS
-              </FPSCounter>
-            )}
-            
             {/* Recording indicator */}
-            {recordingState[camera.id] && (
-              <RecordingIndicator
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                transition={{ delay: 0.4 }}
-              >
-                REC
-              </RecordingIndicator>
-            )}
-            
             {/* Camera feed */}
             <CameraFeed
               camera={camera}
@@ -431,47 +270,6 @@ const DynamicCameraGrid: React.FC<DynamicCameraGridProps> = ({
                 </ReconnectIndicator>
               </ConnectionOverlay>
             )}
-            
-            {/* Control buttons */}
-            <ControlButtons
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-            >
-              <ControlButton
-                variant="primary"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleToggleRecording(camera);
-                }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {recordingState[camera.id] ? <Pause size={16} /> : <Play size={16} />}
-              </ControlButton>
-              
-              <ControlButton
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleSnapshot(camera);
-                }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <CameraIcon size={16} />
-              </ControlButton>
-              
-              <ControlButton
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleFullscreen(camera);
-                }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Maximize2 size={16} />
-              </ControlButton>
-            </ControlButtons>
           </CameraWrapper>
         ))}
       </AnimatePresence>

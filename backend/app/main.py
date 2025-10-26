@@ -13,6 +13,7 @@ from app.core.database import async_engine, Base, AsyncSessionLocal
 from app.routers import auth, cameras, analytics
 from app.services.cleanup_service import cleanup_service
 from app.services.yolo_integration import yolo_integration
+from app.services.ollama_service import ollama_service
 from app.services.websocket_manager import manager
 from app.services.webcam_service import webcam_service
 from app.middleware.rate_limit import general_rate_limit
@@ -38,6 +39,10 @@ async def lifespan(app: FastAPI):
     # Initialize YOLO integration service
     await yolo_integration.initialize()
     logger.info("✅ YOLO integration service initialized")
+    
+    # Initialize Ollama service
+    await ollama_service.initialize()
+    logger.info("✅ Ollama service initialized")
     
     # Start cleanup service
     await cleanup_service.start()
@@ -83,6 +88,7 @@ async def lifespan(app: FastAPI):
     logger.info("🛑 Shutting down CrimeEye-Pro Backend...")
     await cleanup_service.stop()
     await yolo_integration.close()
+    await ollama_service.close()
     
     # Stop webcam stream
     try:
@@ -199,6 +205,89 @@ async def websocket_endpoint(websocket: WebSocket):
                         'type': 'unsubscription_confirmed',
                         'camera_id': camera_id
                     }, websocket)
+            
+            elif message_type == 'frame':
+                # Handle incoming frame from desktop webcam
+                camera_id = data.get('camera_id')
+                frame_data = data.get('frame')
+                
+                if camera_id and frame_data:
+                    try:
+                        # Decode base64 frame
+                        import base64
+                        import numpy as np
+                        import cv2
+                        
+                        # Remove data URL prefix if present
+                        if ',' in frame_data:
+                            frame_data = frame_data.split(',')[1]
+                        
+                        # Decode base64 to bytes
+                        frame_bytes = base64.b64decode(frame_data)
+                        
+                        # Convert to numpy array
+                        nparr = np.frombuffer(frame_bytes, np.uint8)
+                        frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+                        
+                        if frame is not None:
+                            # Process frame through YOLO
+                            yolo_result = await yolo_integration.process_frame(frame, camera_id)
+                            
+                            if yolo_result:
+                                # Parse YOLO response
+                                alerts, threat_level, trigger_llm = yolo_integration.parse_yolo_response(yolo_result)
+                                
+                                # Extract detections for frontend
+                                detections = []
+                                if yolo_result.get('success') and yolo_result.get('detections'):
+                                    for det in yolo_result['detections']:
+                                        detections.append({
+                                            'class_name': det.get('class', 'unknown'),
+                                            'confidence': det.get('confidence', 0),
+                                            'bbox': det.get('bbox', [0, 0, 0, 0]),
+                                            'threat_level': threat_level
+                                        })
+                                
+                                # Send detection update to subscribers
+                                await manager.broadcast_to_camera_subscribers(camera_id, {
+                                    'type': 'detection',
+                                    'camera_id': camera_id,
+                                    'detections': detections,
+                                    'alerts': alerts,
+                                    'threat_level': threat_level,
+                                    'timestamp': time.time()
+                                })
+                                
+                                # If LLM should be triggered, process with Ollama
+                                if trigger_llm and alerts:
+                                    logger.info(f"LLM analysis triggered for camera {camera_id}")
+                                    
+                                    # Get camera name (default if not found)
+                                    camera_name = "Desktop Camera" if camera_id == "DESKTOP_WEBCAM" else f"Camera {camera_id}"
+                                    person_count = yolo_result.get('person_count', 0)
+                                    
+                                    # Analyze with Ollama
+                                    llm_result = await ollama_service.analyze_detection(
+                                        camera_id=camera_id,
+                                        camera_name=camera_name,
+                                        alerts=alerts,
+                                        threat_level=threat_level,
+                                        person_count=person_count
+                                    )
+                                    
+                                    if llm_result and llm_result.get('success'):
+                                        # Send LLM analysis to subscribers
+                                        await manager.broadcast_to_camera_subscribers(camera_id, {
+                                            'type': 'llm_analysis',
+                                            'camera_id': camera_id,
+                                            'analysis': llm_result.get('analysis'),
+                                            'threat_level': threat_level,
+                                            'timestamp': time.time()
+                                        })
+                                        logger.info(f"LLM analysis sent for camera {camera_id}")
+                                    
+                    except Exception as e:
+                        logger.error(f"Error processing frame: {e}")
             
             elif message_type == 'ping':
                 await manager.send_personal_message({

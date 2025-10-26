@@ -10,6 +10,9 @@ A production-ready, AI-powered surveillance platform with real-time object detec
 
 ### Core Capabilities
 - **Real-Time Object Detection** - YOLOv8-powered detection with <1s latency
+- **Live Desktop Webcam** - Real-time webcam monitoring with instant detection
+- **Live Clock Display** - Real-time date and time on surveillance feeds
+- **Detection Timestamps** - Automatic timestamp on every detection event
 - **Multi-Camera Support** - Monitor unlimited cameras simultaneously
 - **Threat Classification** - Automatic threat level assessment (Low/Medium/High)
 - **Instant Alerts** - Email and SMS notifications for high-threat detections
@@ -17,13 +20,16 @@ A production-ready, AI-powered surveillance platform with real-time object detec
 - **Frame Gallery** - Searchable archive of all detection events
 - **Analytics Dashboard** - Comprehensive statistics and trend analysis
 - **Responsive Camera Grid** - Dynamic layouts for 1-20+ cameras
+- **Admin Panel** - User registration approval and management
 
 ### Security Features
-- **Single-Admin Architecture** - Secure, single-tenant design
-- **JWT Authentication** - Token-based auth with refresh mechanism
+- **JWT Authentication** - Secure token-based authentication with refresh mechanism
+- **User Registration System** - Admin approval workflow for new users
+- **Password Hashing** - Bcrypt encryption for secure password storage
 - **Rate Limiting** - Protection against brute force attacks
 - **Encrypted Storage** - Secure frame and metadata storage
 - **HTTPS Ready** - Production-ready security configuration
+- **Admin Panel** - Manage pending user registrations
 
 ### Performance
 - **Low Latency** - <50ms WebSocket message delivery
@@ -73,6 +79,8 @@ This will:
 Username: CrimeEye
 Password: CrimeEye@
 ```
+
+**Note:** New users can register but require admin approval before login.
 
 **API Documentation:** http://localhost:8000/docs
 

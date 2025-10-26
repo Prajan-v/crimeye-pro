@@ -9,7 +9,6 @@ import BaseCard from '../../../common/components/Cards/BaseCard';
 import AlertFrequencyChart from '../../../common/components/Charts/AlertFrequencyChart';
 import ThreatDistributionChart from '../../../common/components/Charts/ThreatDistributionChart';
 import RecentAlertsWidget from '../components/RecentAlertsWidget';
-import CameraPreviewGrid from '../components/CameraPreviewGrid';
 import { BarChart2, PieChart, Activity, Camera, AlertTriangle, Shield } from 'react-feather';
 import { selectCurrentUser } from '../../auth/authSlice';
 import ParticleBackground from '../../../common/components/Effects/ParticleBackground';
@@ -66,23 +65,21 @@ const MainGrid = styled.div`
   
   @media (min-width: ${({ theme }) => theme.breakpoints.md}) {
     grid-template-columns: repeat(2, 1fr);
-    .system-status, .camera-grid, .recent-alerts { grid-column: 1 / -1; }
+    .system-status, .recent-alerts { grid-column: 1 / -1; }
   }
   
   @media (min-width: ${({ theme }) => theme.breakpoints.xl}) {
     grid-template-columns: repeat(3, 1fr);
     .system-status, .alert-frequency, .threat-distribution { grid-column: span 1; }
-    .camera-grid { grid-column: 1 / -1; }
     .recent-alerts { grid-column: 1 / -1; }
   }
   
   @media (min-width: 1536px) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     .system-status { grid-column: 1 / 2; grid-row: 1 / 2; }
     .alert-frequency { grid-column: 2 / 3; grid-row: 1 / 2; }
     .threat-distribution { grid-column: 3 / 4; grid-row: 1 / 2; }
-    .recent-alerts { grid-column: 4 / 5; grid-row: 1 / 3; }
-    .camera-grid { grid-column: 1 / 4; grid-row: 2 / 3; }
+    .recent-alerts { grid-column: 1 / -1; grid-row: 2 / 3; }
   }
 `;
 
@@ -110,7 +107,8 @@ const DashboardPage: React.FC = () => {
 
   // Calculate stats
   const totalAlerts = allIncidents.length;
-  const activeCameras = new Set(allIncidents.map(incident => incident.camera_id)).size;
+  // Count active cameras - desktop webcam is always active when user is on live feeds
+  const activeCameras = 1; // Desktop webcam is the only active camera
   const criticalThreats = allIncidents.filter(incident => 
     ['critical', 'high'].includes(incident.threat_level?.toLowerCase() || '')
   ).length;
@@ -190,11 +188,8 @@ const DashboardPage: React.FC = () => {
             <ThreatDistributionChart data={threatDistributionData} />
           </GlassmorphicCard>
         </div>
-        <div className="camera-grid">
-          <CameraPreviewGrid customIndex={3} />
-        </div>
         <div className="recent-alerts">
-          <RecentAlertsWidget alerts={recentIncidents} customIndex={4} />
+          <RecentAlertsWidget alerts={recentIncidents} customIndex={3} />
         </div>
       </MainGrid>
     </DashboardContainer>
