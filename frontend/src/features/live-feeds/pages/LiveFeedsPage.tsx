@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { Clock } from 'react-feather';
 import { Video, Camera, Activity, AlertTriangle, Settings, Grid } from 'react-feather';
 import GlassmorphicCard from '../../../common/components/Cards/GlassmorphicCard';
 import ParticleBackground from '../../../common/components/Effects/ParticleBackground';

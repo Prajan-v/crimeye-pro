@@ -44,8 +44,12 @@ const initializeDatabase = async () => {
         username VARCHAR(100) UNIQUE NOT NULL,
         password VARCHAR(255) NOT NULL,
         email VARCHAR(255) UNIQUE, -- Keep email as optional
+        is_approved BOOLEAN DEFAULT FALSE,
         created_at TIMESTAMPTZ DEFAULT NOW()
       );
+      
+      -- Add is_approved column if it doesn't exist (for existing databases)
+      ALTER TABLE users ADD COLUMN IF NOT EXISTS is_approved BOOLEAN DEFAULT FALSE;
 
       CREATE TABLE IF NOT EXISTS ai_detections (
         id SERIAL PRIMARY KEY,

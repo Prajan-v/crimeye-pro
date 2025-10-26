@@ -8,14 +8,36 @@ import { loginUser, selectAuthStatus, selectAuthError } from '../authSlice';
 import { Shield, Eye, EyeOff, Lock, User, AlertCircle } from 'react-feather';
 import { toast } from 'react-hot-toast';
 
-// Particle component for background animation
-const Particle = styled(motion.div)`
+// Enhanced particle components for background animation
+const Particle = styled(motion.div)<{ size: number; color: string }>`
   position: absolute;
-  width: 4px;
-  height: 4px;
-  background: ${({ theme }) => theme.colors.accent.primary};
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
+  background: ${({ color }) => color};
   border-radius: 50%;
   pointer-events: none;
+  filter: blur(0.5px);
+`;
+
+const FloatingShape = styled(motion.div)<{ size: number; color: string }>`
+  position: absolute;
+  width: ${({ size }) => size}px;
+  height: ${({ size }) => size}px;
+  background: ${({ color }) => color};
+  border-radius: 30%;
+  pointer-events: none;
+  opacity: 0.1;
+  filter: blur(1px);
+`;
+
+const GlowEffect = styled(motion.div)`
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(20px);
 `;
 
 // Glassmorphism container
@@ -29,9 +51,12 @@ const GlassContainer = styled(motion.div)`
   box-shadow: ${({ theme }) => theme.shadows.glass};
   position: relative;
   overflow: hidden;
+  width: 100%;
+  max-width: 480px;
+  min-width: 400px;
 `;
 
-// Animated background
+// Enhanced animated background
 const AnimatedBackground = styled(motion.div)`
   position: fixed;
   top: 0;
@@ -41,13 +66,41 @@ const AnimatedBackground = styled(motion.div)`
   background: linear-gradient(
     45deg,
     #0a0a0a 0%,
-    #1a1a1a 25%,
-    #2a2a2a 50%,
+    #1a1a1a 15%,
+    #2a2a2a 30%,
+    #1a1a1a 45%,
+    #0a0a0a 60%,
     #1a1a1a 75%,
+    #2a2a2a 90%,
     #0a0a0a 100%
   );
   background-size: 400% 400%;
-  z-index: -1;
+  z-index: -2;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle at 20% 80%, 
+      rgba(255, 215, 0, 0.1) 0%, 
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%, 
+      rgba(255, 165, 0, 0.08) 0%, 
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%, 
+      rgba(255, 107, 53, 0.06) 0%, 
+      transparent 50%
+    );
+    z-index: -1;
+  }
 `;
 
 // Logo with glow effect
@@ -71,7 +124,7 @@ const Form = styled.form`
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.lg};
   width: 100%;
-  max-width: 400px;
+  align-items: center;
 `;
 
 const InputGroup = styled(motion.div)`
@@ -79,6 +132,8 @@ const InputGroup = styled(motion.div)`
   display: flex;
   flex-direction: column;
   gap: ${({ theme }) => theme.spacing.sm};
+  width: 100%;
+  align-items: center;
 `;
 
 const Input = styled.input<{ hasError: boolean }>`
@@ -86,11 +141,15 @@ const Input = styled.input<{ hasError: boolean }>`
   border: 1px solid ${({ hasError, theme }) => 
     hasError ? theme.colors.status.error : theme.colors.border};
   border-radius: ${({ theme }) => theme.borderRadius.md};
-  padding: ${({ theme }) => theme.spacing.md};
+  padding: ${({ theme }) => theme.spacing.lg};
   color: ${({ theme }) => theme.colors.text.primary};
-  font-size: ${({ theme }) => theme.fontSizes.base};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   transition: all ${({ theme }) => theme.transitions.base};
   position: relative;
+  height: 56px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
   
   &:focus {
     border-color: ${({ theme }) => theme.colors.accent.primary};
@@ -99,27 +158,34 @@ const Input = styled.input<{ hasError: boolean }>`
   
   &::placeholder {
     color: ${({ theme }) => theme.colors.text.muted};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
   }
 `;
 
 const InputIcon = styled.div`
   position: absolute;
-  left: ${({ theme }) => theme.spacing.md};
+  left: ${({ theme }) => theme.spacing.lg};
   top: 50%;
   transform: translateY(-50%);
   color: ${({ theme }) => theme.colors.text.muted};
   z-index: 1;
+  svg {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 const InputWrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
+  justify-content: center;
 `;
 
 const PasswordToggle = styled.button`
   position: absolute;
-  right: ${({ theme }) => theme.spacing.md};
+  right: ${({ theme }) => theme.spacing.lg};
   top: 50%;
   transform: translateY(-50%);
   background: none;
@@ -129,6 +195,11 @@ const PasswordToggle = styled.button`
   padding: ${({ theme }) => theme.spacing.sm};
   border-radius: ${({ theme }) => theme.borderRadius.sm};
   transition: all ${({ theme }) => theme.transitions.fast};
+  
+  svg {
+    width: 24px;
+    height: 24px;
+  }
   
   &:hover {
     color: ${({ theme }) => theme.colors.text.primary};
@@ -140,14 +211,19 @@ const Button = styled(motion.button)<{ isLoading: boolean }>`
   background: linear-gradient(135deg, ${({ theme }) => theme.colors.accent.primary}, ${({ theme }) => theme.colors.accent.secondary});
   border: none;
   border-radius: ${({ theme }) => theme.borderRadius.md};
-  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
+  padding: ${({ theme }) => theme.spacing.lg} ${({ theme }) => theme.spacing.xl};
   color: ${({ theme }) => theme.colors.background.primary};
   font-weight: 600;
-  font-size: ${({ theme }) => theme.fontSizes.base};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
   cursor: ${({ isLoading }) => isLoading ? 'not-allowed' : 'pointer'};
   position: relative;
   overflow: hidden;
   transition: all ${({ theme }) => theme.transitions.base};
+  height: 56px;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  display: block;
   
   &:hover:not(:disabled) {
     transform: translateY(-2px);
@@ -171,6 +247,11 @@ const ErrorMessage = styled(motion.div)`
   align-items: center;
   gap: ${({ theme }) => theme.spacing.sm};
   margin-top: ${({ theme }) => theme.spacing.sm};
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const CheckboxWrapper = styled.label`
@@ -180,6 +261,10 @@ const CheckboxWrapper = styled.label`
   cursor: pointer;
   color: ${({ theme }) => theme.colors.text.secondary};
   font-size: ${({ theme }) => theme.fontSizes.sm};
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 `;
 
 const Checkbox = styled.input`
@@ -219,37 +304,141 @@ const StrengthLabel = styled.div<{ strength: number }>`
   margin-top: ${({ theme }) => theme.spacing.xs};
 `;
 
-// Particle system
+// Enhanced particle system with multiple layers
 const ParticleSystem: React.FC = () => {
-  const [particles, setParticles] = useState<Array<{ id: number; x: number; y: number }>>([]);
+  const [particles, setParticles] = useState<Array<{ 
+    id: number; 
+    x: number; 
+    y: number; 
+    size: number; 
+    color: string;
+    type: 'particle' | 'shape' | 'glow';
+  }>>([]);
 
   useEffect(() => {
-    const newParticles = Array.from({ length: 50 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-    }));
+    const colors = ['#FFD700', '#FFA500', '#FF6B35', '#4ECDC4', '#45B7D1', '#96CEB4'];
+    const newParticles = [];
+    
+    // Small particles
+    for (let i = 0; i < 80; i++) {
+      newParticles.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 3 + 1,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        type: 'particle'
+      });
+    }
+    
+    // Floating shapes
+    for (let i = 80; i < 95; i++) {
+      newParticles.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 20 + 10,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        type: 'shape'
+      });
+    }
+    
+    // Glow effects
+    for (let i = 95; i < 100; i++) {
+      newParticles.push({
+        id: i,
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: 200,
+        color: '#FFD700',
+        type: 'glow'
+      });
+    }
+    
     setParticles(newParticles);
   }, []);
 
   return (
     <>
-      {particles.map((particle) => (
-        <Particle
-          key={particle.id}
-          initial={{ x: `${particle.x}vw`, y: `${particle.y}vh`, opacity: 0 }}
-          animate={{
-            x: `${particle.x + Math.random() * 20 - 10}vw`,
-            y: `${particle.y + Math.random() * 20 - 10}vh`,
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Infinity,
-            delay: Math.random() * 2,
-          }}
-        />
-      ))}
+      {particles.map((particle) => {
+        if (particle.type === 'particle') {
+          return (
+            <Particle
+              key={particle.id}
+              size={particle.size}
+              color={particle.color}
+              initial={{ 
+                x: `${particle.x}vw`, 
+                y: `${particle.y}vh`, 
+                opacity: 0,
+                scale: 0
+              }}
+              animate={{
+                x: `${particle.x + (Math.random() - 0.5) * 30}vw`,
+                y: `${particle.y + (Math.random() - 0.5) * 30}vh`,
+                opacity: [0, 0.8, 0],
+                scale: [0, 1, 0],
+              }}
+              transition={{
+                duration: 4 + Math.random() * 3,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+                ease: 'easeInOut'
+              }}
+            />
+          );
+        } else if (particle.type === 'shape') {
+          return (
+            <FloatingShape
+              key={particle.id}
+              size={particle.size}
+              color={particle.color}
+              initial={{ 
+                x: `${particle.x}vw`, 
+                y: `${particle.y}vh`, 
+                opacity: 0,
+                rotate: 0
+              }}
+              animate={{
+                x: `${particle.x + (Math.random() - 0.5) * 20}vw`,
+                y: `${particle.y + (Math.random() - 0.5) * 20}vh`,
+                opacity: [0, 0.15, 0],
+                rotate: 360,
+              }}
+              transition={{
+                duration: 8 + Math.random() * 4,
+                repeat: Infinity,
+                delay: Math.random() * 3,
+                ease: 'linear'
+              }}
+            />
+          );
+        } else {
+          return (
+            <GlowEffect
+              key={particle.id}
+              initial={{ 
+                x: `${particle.x}vw`, 
+                y: `${particle.y}vh`, 
+                opacity: 0,
+                scale: 0.5
+              }}
+              animate={{
+                x: `${particle.x + (Math.random() - 0.5) * 15}vw`,
+                y: `${particle.y + (Math.random() - 0.5) * 15}vh`,
+                opacity: [0, 0.3, 0],
+                scale: [0.5, 1.2, 0.5],
+              }}
+              transition={{
+                duration: 6 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 4,
+                ease: 'easeInOut'
+              }}
+            />
+          );
+        }
+      })}
     </>
   );
 };
@@ -262,7 +451,6 @@ interface LoginFormData {
 
 const LoginPage: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [passwordStrength, setPasswordStrength] = useState(0);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(selectAuthStatus);
@@ -271,22 +459,8 @@ const LoginPage: React.FC = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<LoginFormData>();
-
-  const password = watch('password', '');
-
-  // Calculate password strength
-  useEffect(() => {
-    let strength = 0;
-    if (password.length >= 8) strength++;
-    if (/[A-Z]/.test(password)) strength++;
-    if (/[a-z]/.test(password)) strength++;
-    if (/[0-9]/.test(password)) strength++;
-    if (/[^A-Za-z0-9]/.test(password)) strength++;
-    setPasswordStrength(strength);
-  }, [password]);
 
   const onSubmit = async (data: LoginFormData) => {
     try {
@@ -304,13 +478,6 @@ const LoginPage: React.FC = () => {
     } catch (error) {
       toast.error('Login failed. Please check your credentials.');
     }
-  };
-
-  const getStrengthLabel = (strength: number) => {
-    if (strength < 2) return 'Weak';
-    if (strength < 3) return 'Fair';
-    if (strength < 4) return 'Good';
-    return 'Strong';
   };
 
   return (
@@ -332,9 +499,9 @@ const LoginPage: React.FC = () => {
           backgroundPosition: ['0% 0%', '100% 100%', '0% 0%'],
         }}
         transition={{
-          duration: 20,
+          duration: 15,
           repeat: Infinity,
-          ease: 'linear',
+          ease: 'easeInOut',
         }}
       />
       
@@ -365,17 +532,33 @@ const LoginPage: React.FC = () => {
           transition={{ delay: 0.2 }}
           style={{
             textAlign: 'center',
-            marginBottom: '32px',
-            fontSize: '2rem',
+            marginBottom: '40px',
+            fontSize: '2.5rem',
             fontWeight: 700,
             background: 'linear-gradient(135deg, #FFD700, #FFA500)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
             backgroundClip: 'text',
+            letterSpacing: '-0.02em',
           }}
         >
           CrimeEye Pro
         </motion.h1>
+        
+        <motion.p
+          initial={{ y: -10, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          style={{
+            textAlign: 'center',
+            marginBottom: '32px',
+            fontSize: '1.125rem',
+            color: '#d4d4d4',
+            fontWeight: 400,
+          }}
+        >
+          Advanced Security Monitoring System
+        </motion.p>
 
         <Form onSubmit={handleSubmit(onSubmit)}>
           <InputGroup
@@ -391,7 +574,7 @@ const LoginPage: React.FC = () => {
                 {...register('username', { required: 'Username is required' })}
                 placeholder="Username"
                 hasError={!!errors.username}
-                style={{ paddingLeft: '48px' }}
+                style={{ paddingLeft: '60px' }}
               />
             </InputWrapper>
             <AnimatePresence>
@@ -422,7 +605,7 @@ const LoginPage: React.FC = () => {
                 type={showPassword ? 'text' : 'password'}
                 placeholder="Password"
                 hasError={!!errors.password}
-                style={{ paddingLeft: '48px', paddingRight: '48px' }}
+                style={{ paddingLeft: '60px', paddingRight: '60px' }}
               />
               <PasswordToggle
                 type="button"
@@ -431,19 +614,6 @@ const LoginPage: React.FC = () => {
                 {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
               </PasswordToggle>
             </InputWrapper>
-            
-            {password && (
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-              >
-                <PasswordStrength strength={passwordStrength} />
-                <StrengthLabel strength={passwordStrength}>
-                  Password strength: {getStrengthLabel(passwordStrength)}
-                </StrengthLabel>
-              </motion.div>
-            )}
             
             <AnimatePresence>
               {errors.password && (
@@ -500,6 +670,33 @@ const LoginPage: React.FC = () => {
             )}
           </AnimatePresence>
         </Form>
+        
+        <motion.div
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          style={{
+            textAlign: 'center',
+            marginTop: '24px',
+            fontSize: '1rem',
+            color: '#d4d4d4',
+          }}
+        >
+          Don't have an account?{' '}
+          <motion.a
+            href="/register"
+            style={{
+              color: '#FFD700',
+              fontWeight: 600,
+              textDecoration: 'none',
+              cursor: 'pointer',
+            }}
+            whileHover={{ color: '#FFA500' }}
+            whileTap={{ scale: 0.98 }}
+          >
+            Create Account
+          </motion.a>
+        </motion.div>
       </GlassContainer>
     </motion.div>
   );

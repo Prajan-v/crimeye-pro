@@ -8,23 +8,84 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { registerUser, loginUser, selectAuthStatus, selectAuthError, clearAuthError } from '../authSlice';
 
 const Container = styled(motion.div)`
-  display: flex; justify-content: center; align-items: center; min-height: 100vh;
-  background: radial-gradient(circle at center top, ${({ theme }) => theme.colors.background.secondary} 0%, ${({ theme }) => theme.colors.background.primary} 80%);
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  min-height: 100vh;
+  background: linear-gradient(
+    45deg,
+    #0a0a0a 0%,
+    #1a1a1a 25%,
+    #2a2a2a 50%,
+    #1a1a1a 75%,
+    #0a0a0a 100%
+  );
+  background-size: 400% 400%;
   padding: ${({ theme }) => theme.spacing.md};
+  position: relative;
 `;
+
 const FormCard = styled(motion.form)`
-  background-color: ${({ theme }) => theme.colors.background.secondary};
-  padding: ${({ theme }) => theme.spacing.lg} ${({ theme }) => theme.spacing.xl};
+  background: ${({ theme }) => theme.colors.glass.background};
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid ${({ theme }) => theme.colors.glass.border};
   border-radius: ${({ theme }) => theme.borderRadius.xl};
-  border: 1px solid ${({ theme }) => theme.colors.border};
-  width: 100%; max-width: 420px;
-  box-shadow: ${({ theme }) => theme.shadows.xl};
+  padding: ${({ theme }) => theme.spacing['2xl']};
+  box-shadow: ${({ theme }) => theme.shadows.glass};
+  width: 100%; 
+  max-width: 480px;
+  min-width: 400px;
+  position: relative;
+  overflow: hidden;
 `;
 const TitleWrapper = styled(motion.div)`
-  text-align: center; color: ${({ theme }) => theme.colors.accent.primary};
-  font-size: ${({ theme }) => theme.fontSizes['2xl']}; margin-bottom: ${({ theme }) => theme.spacing.lg};
-  display: flex; align-items: center; justify-content: center;
-  gap: ${({ theme }) => theme.spacing.sm}; font-weight: 700;
+  text-align: center; 
+  color: ${({ theme }) => theme.colors.accent.primary};
+  font-size: 2.5rem; 
+  margin-bottom: 16px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  gap: ${({ theme }) => theme.spacing.sm}; 
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+`;
+
+const Subtitle = styled(motion.p)`
+  text-align: center;
+  margin-bottom: 32px;
+  font-size: 1.125rem;
+  color: #d4d4d4;
+  font-weight: 400;
+`;
+
+const Input = styled(motion.input)`
+  width: 100%;
+  background: ${({ theme }) => theme.colors.background.surface};
+  border: 1px solid ${({ theme }) => theme.colors.border};
+  border-radius: ${({ theme }) => theme.borderRadius.md};
+  padding: ${({ theme }) => theme.spacing.lg};
+  color: ${({ theme }) => theme.colors.text.primary};
+  font-size: ${({ theme }) => theme.fontSizes.lg};
+  transition: all ${({ theme }) => theme.transitions.base};
+  height: 56px;
+  margin-bottom: ${({ theme }) => theme.spacing.md};
+  
+  &:focus {
+    border-color: ${({ theme }) => theme.colors.accent.primary};
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.colors.accent.primary}20;
+  }
+  
+  &::placeholder {
+    color: ${({ theme }) => theme.colors.text.muted};
+    font-size: ${({ theme }) => theme.fontSizes.lg};
+  }
 `;
 const ErrorMessage = styled(motion.p)`
   display: flex; align-items: center; gap: ${({ theme }) => theme.spacing.sm};
@@ -44,17 +105,35 @@ const ToggleText = styled(motion.p)`
   }
 `;
 const Button = styled(motion.button)`
-  display: inline-flex; align-items: center; justify-content: center; width: 100%;
-  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.md};
-  border: none; border-radius: ${({ theme }) => theme.borderRadius.md};
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  width: 100%;
+  padding: ${({ theme }) => theme.spacing.lg} ${({ theme }) => theme.spacing.xl};
+  border: none; 
+  border-radius: ${({ theme }) => theme.borderRadius.md};
   cursor: pointer;
-  font-weight: 600; font-size: ${({ theme }) => theme.fontSizes.base};
-  transition: all ${({ theme }) => theme.transitions.fast};
-  background-color: ${({ theme }) => theme.colors.accent.primary}; color: #FFFFFF;
+  font-weight: 600; 
+  font-size: ${({ theme }) => theme.fontSizes.lg};
+  transition: all ${({ theme }) => theme.transitions.base};
+  background: linear-gradient(135deg, ${({ theme }) => theme.colors.accent.primary}, ${({ theme }) => theme.colors.accent.secondary}); 
+  color: #FFFFFF;
   box-shadow: ${({ theme }) => theme.shadows.sm};
-  &:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-2px); box-shadow: ${({ theme }) => theme.shadows.md}; }
-  &:active:not(:disabled) { transform: translateY(0); filter: brightness(0.9); box-shadow: ${({ theme }) => theme.shadows.sm}; }
-  &:disabled { background-color: ${({ theme }) => theme.colors.border}; color: ${({ theme }) => theme.colors.text.muted}; cursor: not-allowed; box-shadow: none; }
+  height: 56px;
+  
+  &:hover:not(:disabled) { 
+    transform: translateY(-2px); 
+    box-shadow: 0 10px 25px ${({ theme }) => theme.colors.accent.primary}40; 
+  }
+  &:active:not(:disabled) { 
+    transform: translateY(0); 
+  }
+  &:disabled { 
+    background: ${({ theme }) => theme.colors.border}; 
+    color: ${({ theme }) => theme.colors.text.muted}; 
+    cursor: not-allowed; 
+    box-shadow: none; 
+  }
 `;
 const formVariants = {
   hidden: { opacity: 0, y: -30 },
@@ -69,10 +148,43 @@ const errorVariants = {
   visible: { opacity: 1, height: 'auto', marginTop: '1rem', marginBottom: '0.25rem', y: 0, transition: { duration: 0.3 } }
 };
 
+const PasswordStrength = styled.div<{ strength: number }>`
+  height: 4px;
+  background: ${({ theme }) => theme.colors.background.elevated};
+  border-radius: ${({ theme }) => theme.borderRadius.full};
+  overflow: hidden;
+  margin-top: ${({ theme }) => theme.spacing.sm};
+  
+  &::after {
+    content: '';
+    display: block;
+    height: 100%;
+    width: ${({ strength }) => strength * 25}%;
+    background: ${({ strength, theme }) => {
+      if (strength < 2) return theme.colors.status.error;
+      if (strength < 3) return theme.colors.status.warning;
+      return theme.colors.status.success;
+    }};
+    transition: all ${({ theme }) => theme.transitions.base};
+  }
+`;
+
+const StrengthLabel = styled.div<{ strength: number }>`
+  font-size: ${({ theme }) => theme.fontSizes.xs};
+  color: ${({ strength, theme }) => {
+    if (strength < 2) return theme.colors.status.error;
+    if (strength < 3) return theme.colors.status.warning;
+    return theme.colors.status.success;
+  }};
+  margin-top: ${({ theme }) => theme.spacing.xs};
+  text-align: center;
+`;
+
 const RegisterPage: React.FC = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [passwordStrength, setPasswordStrength] = useState(0);
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(selectAuthStatus);
   const authError = useAppSelector(selectAuthError);
@@ -80,6 +192,24 @@ const RegisterPage: React.FC = () => {
   const location = useLocation();
 
   useEffect(() => { dispatch(clearAuthError()); }, [dispatch]);
+
+  // Calculate password strength
+  useEffect(() => {
+    let strength = 0;
+    if (password.length >= 8) strength++;
+    if (/[A-Z]/.test(password)) strength++;
+    if (/[a-z]/.test(password)) strength++;
+    if (/[0-9]/.test(password)) strength++;
+    if (/[^A-Za-z0-9]/.test(password)) strength++;
+    setPasswordStrength(strength);
+  }, [password]);
+
+  const getStrengthLabel = (strength: number) => {
+    if (strength < 2) return 'Weak';
+    if (strength < 3) return 'Fair';
+    if (strength < 4) return 'Good';
+    return 'Strong';
+  };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -99,15 +229,10 @@ const RegisterPage: React.FC = () => {
     const resultAction = await dispatch(registerUser({ username, password, email }) as any); 
     
     if (registerUser.fulfilled.match(resultAction)) {
-      console.log("Registration successful, attempting auto-login...");
-      const loginResult = await dispatch(loginUser({ username, password }) as any);
-      if (loginUser.fulfilled.match(loginResult)) {
-        const from = (location.state as { from?: Location })?.from?.pathname || "/";
-        navigate(from, { replace: true });
-      } else {
-        console.error("Auto-login failed after registration.");
-        navigate('/login');
-      }
+      console.log("Registration successful, account pending admin approval...");
+      // Show success message instead of auto-login
+      alert('Registration successful! Your account is pending admin approval. You will be notified once approved.');
+      navigate('/login');
     }
   };
 
@@ -115,11 +240,30 @@ const RegisterPage: React.FC = () => {
     <Container initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
       <FormCard onSubmit={handleRegister} variants={formVariants} initial="hidden" animate="visible">
         <TitleWrapper variants={itemVariants} custom={0}>
-          <UserPlus size={32} /> Create Account
+          <UserPlus size={40} /> Create Account
         </TitleWrapper>
-        <motion.input variants={itemVariants} custom={1} type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required autoComplete="username" />
-        <motion.input variants={itemVariants} custom={2} type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" />
-        <motion.input variants={itemVariants} custom={3} type="password" placeholder="Password (min. 6 characters)" value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="new-password" />
+        <Subtitle variants={itemVariants} custom={0.5}>
+          Join CrimeEye Pro Security System
+        </Subtitle>
+        <Input variants={itemVariants} custom={1} type="text" placeholder="Username" value={username} onChange={(e) => setUsername(e.target.value)} required autoComplete="username" />
+        <Input variants={itemVariants} custom={2} type="email" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" />
+        <Input variants={itemVariants} custom={3} type="password" placeholder="Password (min. 6 characters)" value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="new-password" />
+        
+        {password && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            variants={itemVariants}
+            custom={3.5}
+          >
+            <PasswordStrength strength={passwordStrength} />
+            <StrengthLabel strength={passwordStrength}>
+              Password strength: {getStrengthLabel(passwordStrength)}
+            </StrengthLabel>
+          </motion.div>
+        )}
+        
         <AnimatePresence>
           {authError && (
             <ErrorMessage key="error-message" variants={errorVariants} initial="hidden" animate="visible" exit="hidden">

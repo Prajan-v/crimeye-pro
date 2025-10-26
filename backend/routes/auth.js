@@ -45,6 +45,16 @@ if (typeof loginUserFunction === 'function') {
 // Get Current User Info
 router.get('/me', authMiddleware, authController.getMe);
 
+// --- Admin Routes ---
+
+// Get all pending users (admin only)
+router.get('/pending', authMiddleware, authController.getPendingUsers);
+
+// Approve user (admin only)
+router.put('/approve/:userId', authMiddleware, authController.approveUser);
+
+// Reject user (admin only)
+router.delete('/reject/:userId', authMiddleware, authController.rejectUser);
 
 // Test Route (Keep for debugging)
 router.post('/test', (req, res) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
-import { Shield, Home, List, LogOut, Menu, X, Video } from 'react-feather';
+import { Shield, Home, List, LogOut, Menu, X, Video, Settings } from 'react-feather';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { logout, selectCurrentUser } from '../../../features/auth/authSlice';
 import { wsDisconnect } from '../../../services/socket.middleware';
@@ -379,6 +379,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, isDrawerOpen, toggleSide
             <NavLinkStyled to="/incidents">
               <List size={20} />
               <AnimatePresence>{!isCollapsed && <LinkText variants={linkTextVariants}>Incidents Log</LinkText>}</AnimatePresence>
+            </NavLinkStyled>
+            <NavLinkStyled to="/admin">
+              <Settings size={20} />
+              <AnimatePresence>{!isCollapsed && <LinkText variants={linkTextVariants}>Admin Panel</LinkText>}</AnimatePresence>
             </NavLinkStyled>
           </Nav>
           <Footer>

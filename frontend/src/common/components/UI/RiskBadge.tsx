@@ -1,12 +1,14 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
-const BadgeContainer = styled(motion.span)<{ 
+interface BadgeProps {
   $level: 'critical' | 'high' | 'medium' | 'low' | 'none' | 'unknown';
   $size?: 'sm' | 'md' | 'lg';
   $glow?: boolean;
-}>`
+}
+
+const BadgeContainer = styled(motion.span)<BadgeProps>`
   display: inline-flex;
   align-items: center;
   gap: ${({ theme }) => theme.spacing.xs};
@@ -31,84 +33,28 @@ const BadgeContainer = styled(motion.span)<{
   border: 1px solid;
   position: relative;
   overflow: hidden;
-  
-  /* Level-specific styling */
-  ${({ $level, theme }) => {
-    switch ($level) {
-      case 'critical':
-        return css`
-          background: linear-gradient(135deg, ${theme.colors.threat.critical}20, ${theme.colors.threat.critical}10);
-          color: ${theme.colors.threat.critical};
-          border-color: ${theme.colors.threat.critical}60;
-          ${({ $glow }) => $glow && css`
-            box-shadow: 0 0 20px ${theme.colors.glowError};
-          `}
-        `;
-      case 'high':
-        return css`
-          background: linear-gradient(135deg, ${theme.colors.threat.high}20, ${theme.colors.threat.high}10);
-          color: ${theme.colors.threat.high};
-          border-color: ${theme.colors.threat.high}60;
-          ${({ $glow }) => $glow && css`
-            box-shadow: 0 0 20px ${theme.colors.glowWarning};
-          `}
-        `;
-      case 'medium':
-        return css`
-          background: linear-gradient(135deg, ${theme.colors.threat.medium}20, ${theme.colors.threat.medium}10);
-          color: ${theme.colors.threat.medium};
-          border-color: ${theme.colors.threat.medium}60;
-          ${({ $glow }) => $glow && css`
-            box-shadow: 0 0 20px ${theme.colors.glowWarning};
-          `}
-        `;
-      case 'low':
-        return css`
-          background: linear-gradient(135deg, ${theme.colors.threat.low}20, ${theme.colors.threat.low}10);
-          color: ${theme.colors.threat.low};
-          border-color: ${theme.colors.threat.low}60;
-          ${({ $glow }) => $glow && css`
-            box-shadow: 0 0 20px ${theme.colors.glowSuccess};
-          `}
-        `;
-      case 'none':
-        return css`
-          background: linear-gradient(135deg, ${theme.colors.threat.none}20, ${theme.colors.threat.none}10);
-          color: ${theme.colors.threat.none};
-          border-color: ${theme.colors.threat.none}60;
-          ${({ $glow }) => $glow && css`
-            box-shadow: 0 0 20px ${theme.colors.glowSuccess};
-          `}
-        `;
-      default:
-        return css`
-          background: linear-gradient(135deg, ${theme.colors.threat.unknown}20, ${theme.colors.threat.unknown}10);
-          color: ${theme.colors.threat.unknown};
-          border-color: ${theme.colors.threat.unknown}60;
-        `;
-    }
-  }}
-  
-  /* Pulse animation for critical/high levels */
-  ${({ $level }) => ['critical', 'high'].includes($level) && css`
-    ${({ theme }) => theme.animations.pulse}
+
+  ${({ $level, theme, $glow }) => css`
+    background: linear-gradient(135deg, ${theme.colors.threat[$level]}20, ${theme.colors.threat[$level]}10);
+    color: ${theme.colors.threat[$level]};
+    border-color: ${theme.colors.threat[$level]}60;
+    ${$glow &&
+    css`
+      box-shadow: 0 0 20px ${
+        $level === 'critical'
+          ? theme.colors.glowError
+          : $level === 'high' || $level === 'medium'
+          ? theme.colors.glowWarning
+          : theme.colors.glowSuccess
+      };
+    `}
   `}
-  
-  /* Shimmer effect */
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
-  }
-  
-  &:hover::before {
-    left: 100%;
-  }
+
+  ${({ $level }) =>
+    ['critical', 'high'].includes($level) &&
+    css`
+      ${({ theme }) => theme.animations.pulse}
+    `}
 `;
 
 const StatusDot = styled.div<{ $level: string }>`
@@ -116,9 +62,11 @@ const StatusDot = styled.div<{ $level: string }>`
   height: 6px;
   border-radius: 50%;
   background-color: currentColor;
-  ${({ $level }) => ['critical', 'high'].includes($level) && `
-    ${({ theme }) => theme.animations.pulse}
-  `}
+  ${({ $level }) =>
+    ['critical', 'high'].includes($level) &&
+    css`
+      ${({ theme }) => theme.animations.pulse}
+    `}
 `;
 
 interface RiskBadgeProps {
@@ -134,23 +82,23 @@ const RiskBadge: React.FC<RiskBadgeProps> = ({
   size = 'md',
   glow = false,
   showDot = true,
-  children
+  children,
 }) => {
-  const badgeVariants = {
+  const badgeVariants: Variants = {
     hidden: { opacity: 0, scale: 0.8 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       scale: 1,
-      transition: { 
-        type: "spring", 
-        stiffness: 200, 
-        damping: 20 
-      }
+      transition: {
+        type: 'spring',
+        stiffness: 200,
+        damping: 20,
+      },
     },
-    hover: { 
+    hover: {
       scale: 1.05,
-      transition: { duration: 0.2 }
-    }
+      transition: { duration: 0.2 },
+    },
   };
 
   return (

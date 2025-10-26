@@ -36,15 +36,25 @@ exports.registerUser = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
     console.log(`Password hashed for user: ${username}`);
 
-    // Insert new user
+    // Insert new user with pending admin approval
     const newUser = await db.query(
-      'INSERT INTO users (username, password, email) VALUES ($1, $2, $3) RETURNING id, username, email, created_at',
-      [username, hashedPassword, email]
+      'INSERT INTO users (username, password, email, is_approved, created_at) VALUES ($1, $2, $3, $4, NOW()) RETURNING id, username, email, is_approved, created_at',
+      [username, hashedPassword, email, false]
     );
 
-    console.log(`✅ User registered successfully: ${newUser.rows[0].username} (ID: ${newUser.rows[0].id})`);
+    console.log(`✅ User registered successfully: ${newUser.rows[0].username} (ID: ${newUser.rows[0].id}) - Pending admin approval`);
+    
+    // Send notification to admin (in a real app, this would send an email)
+    console.log(`📧 Admin notification: New user registration pending approval - ${username} (${email})`);
+    
     // Return only non-sensitive info
-    res.status(201).json({ id: newUser.rows[0].id, username: newUser.rows[0].username, email: newUser.rows[0].email });
+    res.status(201).json({ 
+      id: newUser.rows[0].id, 
+      username: newUser.rows[0].username, 
+      email: newUser.rows[0].email,
+      is_approved: newUser.rows[0].is_approved,
+      message: 'Registration successful! Your account is pending admin approval.'
+    });
 
   } catch (err) {
     console.error('🚨 Registration Error:', err.message);
@@ -65,7 +75,7 @@ exports.loginUser = async (req, res) => {
   try {
     // Find user by username
     console.log(`Attempting login for user: ${username}`);
-    const userResult = await db.query('SELECT id, username, password FROM users WHERE username = $1', [username]);
+    const userResult = await db.query('SELECT id, username, password, is_approved FROM users WHERE username = $1', [username]);
 
     if (userResult.rows.length === 0) {
       console.warn(`Login failed: User '${username}' not found.`);
@@ -81,6 +91,13 @@ exports.loginUser = async (req, res) => {
       console.warn(`Login failed: Password mismatch for user '${username}'.`);
       return res.status(400).json({ message: 'Invalid credentials' }); // Password incorrect
     }
+    
+    // Check if user is approved by admin
+    if (!user.is_approved) {
+      console.warn(`Login failed: User '${username}' is not approved by admin.`);
+      return res.status(403).json({ message: 'Your account is pending admin approval. Please contact the administrator.' });
+    }
+    
     console.log(`Password match successful for user: ${user.username}`);
 
     // Generate JWT Payload
@@ -123,7 +140,7 @@ exports.getMe = async (req, res) => {
   }
   try {
     // Fetch fresh user data (excluding password)
-    const userResult = await db.query('SELECT id, username, email, created_at FROM users WHERE id = $1', [req.user.id]);
+    const userResult = await db.query('SELECT id, username, email, is_approved, created_at FROM users WHERE id = $1', [req.user.id]);
     if (userResult.rows.length === 0) {
        console.warn(`getMe warning: User ID ${req.user.id} found in token but not in DB.`);
        return res.status(404).json({ message: 'User not found' });
@@ -132,5 +149,75 @@ exports.getMe = async (req, res) => {
   } catch (err) {
     console.error('🚨 GetMe Error:', err.message);
     res.status(500).json({ message: 'Server Error retrieving user data' });
+  }
+};
+
+// --- Admin Functions ---
+
+// Get all pending users (admin only)
+exports.getPendingUsers = async (req, res) => {
+  console.log("--- getPendingUsers function called ---");
+  try {
+    const pendingUsers = await db.query(
+      'SELECT id, username, email, created_at FROM users WHERE is_approved = false ORDER BY created_at DESC'
+    );
+    res.json(pendingUsers.rows);
+  } catch (err) {
+    console.error('🚨 GetPendingUsers Error:', err.message);
+    res.status(500).json({ message: 'Server error retrieving pending users' });
+  }
+};
+
+// Approve user (admin only)
+exports.approveUser = async (req, res) => {
+  console.log("--- approveUser function called ---");
+  const { userId } = req.params;
+  
+  if (!userId) {
+    return res.status(400).json({ message: 'User ID is required' });
+  }
+  
+  try {
+    const result = await db.query(
+      'UPDATE users SET is_approved = true WHERE id = $1 RETURNING id, username, email',
+      [userId]
+    );
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    
+    console.log(`✅ User approved: ${result.rows[0].username} (ID: ${result.rows[0].id})`);
+    res.json({ message: 'User approved successfully', user: result.rows[0] });
+  } catch (err) {
+    console.error('🚨 ApproveUser Error:', err.message);
+    res.status(500).json({ message: 'Server error approving user' });
+  }
+};
+
+// Reject user (admin only)
+exports.rejectUser = async (req, res) => {
+  console.log("--- rejectUser function called ---");
+  const { userId } = req.params;
+  
+  if (!userId) {
+    return res.status(400).json({ message: 'User ID is required' });
+  }
+  
+  try {
+    const result = await db.query(
+      'DELETE FROM users WHERE id = $1 AND is_approved = false RETURNING username, email',
+      [userId]
+    );
+    
+    if (result.rows.length === 0) {
+      return res.status(404).json({ message: 'User not found or already approved' });
+    }
+    
+    console.log(`❌ User rejected and deleted: ${result.rows[0].username}`);
+    res.json({ message: 'User rejected and removed successfully' });
+  } catch (err) {
+    console.error('🚨 RejectUser Error:', err.message);
+    res.status(500).json({ message: 'Server error rejecting user' });
   }
 };
