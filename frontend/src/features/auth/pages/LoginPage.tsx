@@ -572,7 +572,7 @@ const LoginPage: React.FC = () => {
       const resultAction = await dispatch(loginUser({
         username: data.username,
         password: data.password,
-      }));
+      }) as any);
       
       if (loginUser.fulfilled.match(resultAction)) {
         if (data.rememberMe) {

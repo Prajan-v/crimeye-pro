@@ -1,14 +1,15 @@
 from pydantic_settings import BaseSettings
 from typing import Optional
 import os
+import secrets
 
 
 class Settings(BaseSettings):
     # Database
     DATABASE_URL: str = "postgresql://prajanv@localhost:5432/crimeye_db"
     
-    # JWT
-    SECRET_KEY: str = "crimeye-pro-secret-key-2024-secure-random-string"
+    # JWT - Generate secure random key if not provided
+    SECRET_KEY: str = os.getenv("SECRET_KEY", secrets.token_urlsafe(32))
     ALGORITHM: str = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 1440  # 24 hours
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7

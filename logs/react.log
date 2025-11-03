@@ -1,0 +1,532 @@
+
+> crimeye-pro-frontend@1.0.0 start
+> react-scripts start
+
+(node:2919) [DEP0176] DeprecationWarning: fs.F_OK is deprecated, use fs.constants.F_OK instead
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:2919) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+(node:2919) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
+Starting the development server...
+
+Compiled successfully!
+
+You can now view crimeye-pro-frontend in the browser.
+
+  Local:            http://localhost:3000
+  On Your Network:  http://192.168.0.7:3000
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+
+webpack compiled successfully
+Files successfully emitted, waiting for typecheck results...
+Issues checking in progress...
+ERROR in src/common/components/Cards/GlassmorphicCard.tsx:127:7
+TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: PolymorphicComponentProps<"web", Substitute<Omit<HTMLMotionProps<"div">, "ref"> & RefAttributes<HTMLDivElement>, { $glow?: boolean | undefined; $hover?: boolean | undefined; }>, void, void, {}, {}>): Element', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; scale: number; }; visible: (i?: number) => { opacity: number; y: number; scale: number; transition: { delay: number; duration: number; ease: readonly [0, 0, 0.2, 1]; type: string; stiffness: number; }; }; hover: { ...; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '(i?: number) => { opacity: number; y: number; scale: number; transition: { delay: number; duration: number; ease: readonly [0, 0, 0.2, 1]; type: string; stiffness: number; }; }' is not assignable to type 'Variant'.
+          Type '(i?: number) => { opacity: number; y: number; scale: number; transition: { delay: number; duration: number; ease: readonly [0, 0, 0.2, 1]; type: string; stiffness: number; }; }' is not assignable to type 'TargetResolver'.
+            Type '{ opacity: number; y: number; scale: number; transition: { delay: number; duration: number; ease: readonly [0, 0, 0.2, 1]; type: string; stiffness: number; }; }' is not assignable to type 'string | TargetAndTransition'.
+              Type '{ opacity: number; y: number; scale: number; transition: { delay: number; duration: number; ease: readonly [0, 0, 0.2, 1]; type: string; stiffness: number; }; }' is not assignable to type 'TargetAndTransition'.
+                Type '{ opacity: number; y: number; scale: number; transition: { delay: number; duration: number; ease: readonly [0, 0, 0.2, 1]; type: string; stiffness: number; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues | undefined; }'.
+                  Types of property 'transition' are incompatible.
+                    Type '{ delay: number; duration: number; ease: readonly [0, 0, 0.2, 1]; type: string; stiffness: number; }' is not assignable to type 'Transition<any> | undefined'.
+                      Type '{ delay: number; duration: number; ease: readonly [0, 0, 0.2, 1]; type: string; stiffness: number; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                        Type '{ delay: number; duration: number; ease: readonly [0, 0, 0.2, 1]; type: string; stiffness: number; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                          Types of property 'type' are incompatible.
+                            Type 'string' is not assignable to type 'AnimationGeneratorType | undefined'.
+  Overload 2 of 2, '(props: Substitute<Omit<HTMLMotionProps<"div">, "ref"> & RefAttributes<HTMLDivElement>, { $glow?: boolean | undefined; $hover?: boolean | undefined; }>): ReactElement<...> | null', gave the following error.
+    Type '{ hidden: { opacity: number; y: number; scale: number; }; visible: (i?: number) => { opacity: number; y: number; scale: number; transition: { delay: number; duration: number; ease: readonly [0, 0, 0.2, 1]; type: string; stiffness: number; }; }; hover: { ...; }; }' is not assignable to type 'Variants'.
+    125 |   return (
+    126 |     <CardContainer
+  > 127 |       variants={cardVariants}
+        |       ^^^^^^^^
+    128 |       initial="hidden"
+    129 |       animate="visible"
+    130 |       whileHover={hover ? "hover" : undefined}
+
+ERROR in src/common/components/Effects/ParticleBackground.tsx:38:24
+TS2554: Expected 1 arguments, but got 0.
+    36 |   const canvasRef = useRef<HTMLCanvasElement>(null);
+    37 |   const particlesRef = useRef<Particle[]>([]);
+  > 38 |   const animationRef = useRef<number>();
+       |                        ^^^^^^^^^^^^^^^^
+    39 |
+    40 |   useEffect(() => {
+    41 |     const canvas = canvasRef.current;
+
+ERROR in src/common/components/UI/FuturisticBorder.tsx:168:7
+TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: PolymorphicComponentProps<"web", Substitute<Omit<HTMLMotionProps<"div">, "ref"> & RefAttributes<HTMLDivElement>, { $variant?: "glow" | "default" | "corner" | "animated" | undefined; $color?: string | undefined; $thickness?: number | undefined; }>, void, void, {}, {}>): Element', gave the following error.
+    Type '{ hidden: { opacity: number; scale: number; }; visible: { opacity: number; scale: number; transition: { duration: number; ease: string; }; }; hover: { scale: number; transition: { duration: number; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: string; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: string; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: string; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'string' is not assignable to type 'Easing | Easing[] | undefined'.
+  Overload 2 of 2, '(props: Substitute<Omit<HTMLMotionProps<"div">, "ref"> & RefAttributes<HTMLDivElement>, { $variant?: "glow" | "default" | "corner" | "animated" | undefined; $color?: string | undefined; $thickness?: number | undefined; }>): ReactElement<...> | null', gave the following error.
+    Type '{ hidden: { opacity: number; scale: number; }; visible: { opacity: number; scale: number; transition: { duration: number; ease: string; }; }; hover: { scale: number; transition: { duration: number; }; }; }' is not assignable to type 'Variants'.
+    166 |       $thickness={thickness}
+    167 |       className={className}
+  > 168 |       variants={borderVariants}
+        |       ^^^^^^^^
+    169 |       initial="hidden"
+    170 |       animate="visible"
+    171 |       whileHover="hover"
+
+ERROR in src/features/admin/pages/AdminPanel.tsx:317:9
+TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: PolymorphicComponentProps<"web", FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>, void, void, {}, {}>): Element', gave the following error.
+    Type '{ children: (Element | Element[])[]; initial: { y: number; opacity: number; }; animate: { y: number; opacity: number; }; transition: { delay: number; }; }' is not assignable to type 'IntrinsicAttributes & FastOmit<Substitute<FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>, FastOmit<...>>, keyof ExecutionProps> & FastOmit<...> & { ...; }'.
+      Property 'initial' does not exist on type 'IntrinsicAttributes & FastOmit<Substitute<FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>, FastOmit<...>>, keyof ExecutionProps> & FastOmit<...> & { ...; }'.
+  Overload 2 of 2, '(props: FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>): ReactElement<...> | null', gave the following error.
+    Type '{ children: (Element | Element[])[]; initial: { y: number; opacity: number; }; animate: { y: number; opacity: number; }; transition: { delay: number; }; }' is not assignable to type 'IntrinsicAttributes & FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>'.
+      Property 'initial' does not exist on type 'IntrinsicAttributes & FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>'.
+    315 |
+    316 |       <PendingUsersList
+  > 317 |         initial={{ y: 20, opacity: 0 }}
+        |         ^^^^^^^
+    318 |         animate={{ y: 0, opacity: 1 }}
+    319 |         transition={{ delay: 0.4 }}
+    320 |       >
+
+ERROR in src/features/auth/pages/LoginPage.tsx:572:43
+TS2345: Argument of type 'AsyncThunkAction<AuthResponse, LoginCredentials, { rejectValue: string; state?: unknown; dispatch?: ThunkDispatch<unknown, unknown, UnknownAction> | undefined; ... 4 more ...; rejectedMeta?: unknown; }>' is not assignable to parameter of type 'UnknownAction'.
+    570 |   const onSubmit = async (data: LoginFormData) => {
+    571 |     try {
+  > 572 |       const resultAction = await dispatch(loginUser({
+        |                                           ^^^^^^^^^^^
+  > 573 |         username: data.username,
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 574 |         password: data.password,
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 575 |       }));
+        | ^^^^^^^^^
+    576 |       
+    577 |       if (loginUser.fulfilled.match(resultAction)) {
+    578 |         if (data.rememberMe) {
+
+ERROR in src/features/live-feeds/pages/LiveFeedsPage.tsx:60:16
+TS2345: Argument of type 'AsyncThunkAction<CameraResponse[], void, { rejectValue: string; state?: unknown; dispatch?: ThunkDispatch<unknown, unknown, UnknownAction> | undefined; extra?: unknown; serializedErrorType?: unknown; pendingMeta?: unknown; fulfilledMeta?: unknown; rejectedMeta?: unknown; }>' is not assignable to parameter of type 'UnknownAction'.
+    58 |   useEffect(() => {
+    59 |     if (status === 'idle') {
+  > 60 |       dispatch(fetchCameras());
+       |                ^^^^^^^^^^^^^^
+    61 |     }
+    62 |   }, [dispatch, status]);
+    63 |
+
+ERROR in src/hooks/useWebSocket.ts:32:31
+TS2554: Expected 1 arguments, but got 0.
+    30 |   const [reconnectAttempts, setReconnectAttempts] = useState(0);
+    31 |   const wsRef = useRef<WebSocket | null>(null);
+  > 32 |   const reconnectTimeoutRef = useRef<NodeJS.Timeout>();
+       |                               ^^^^^^^^^^^^^^^^^^^^^^^^
+    33 |
+    34 |   const connect = useCallback(() => {
+    35 |     try {
+
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+ERROR in src/common/components/Effects/ParticleBackground.tsx:38:24
+TS2554: Expected 1 arguments, but got 0.
+    36 |   const canvasRef = useRef<HTMLCanvasElement>(null);
+    37 |   const particlesRef = useRef<Particle[]>([]);
+  > 38 |   const animationRef = useRef<number>();
+       |                        ^^^^^^^^^^^^^^^^
+    39 |
+    40 |   useEffect(() => {
+    41 |     const canvas = canvasRef.current;
+
+ERROR in src/common/components/UI/FuturisticBorder.tsx:168:7
+TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: PolymorphicComponentProps<"web", Substitute<Omit<HTMLMotionProps<"div">, "ref"> & RefAttributes<HTMLDivElement>, { $variant?: "glow" | "default" | "corner" | "animated" | undefined; $color?: string | undefined; $thickness?: number | undefined; }>, void, void, {}, {}>): Element', gave the following error.
+    Type '{ hidden: { opacity: number; scale: number; }; visible: { opacity: number; scale: number; transition: { duration: number; ease: string; }; }; hover: { scale: number; transition: { duration: number; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: string; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: string; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: string; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'string' is not assignable to type 'Easing | Easing[] | undefined'.
+  Overload 2 of 2, '(props: Substitute<Omit<HTMLMotionProps<"div">, "ref"> & RefAttributes<HTMLDivElement>, { $variant?: "glow" | "default" | "corner" | "animated" | undefined; $color?: string | undefined; $thickness?: number | undefined; }>): ReactElement<...> | null', gave the following error.
+    Type '{ hidden: { opacity: number; scale: number; }; visible: { opacity: number; scale: number; transition: { duration: number; ease: string; }; }; hover: { scale: number; transition: { duration: number; }; }; }' is not assignable to type 'Variants'.
+    166 |       $thickness={thickness}
+    167 |       className={className}
+  > 168 |       variants={borderVariants}
+        |       ^^^^^^^^
+    169 |       initial="hidden"
+    170 |       animate="visible"
+    171 |       whileHover="hover"
+
+ERROR in src/features/admin/pages/AdminPanel.tsx:317:9
+TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: PolymorphicComponentProps<"web", FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>, void, void, {}, {}>): Element', gave the following error.
+    Type '{ children: (Element | Element[])[]; initial: { y: number; opacity: number; }; animate: { y: number; opacity: number; }; transition: { delay: number; }; }' is not assignable to type 'IntrinsicAttributes & FastOmit<Substitute<FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>, FastOmit<...>>, keyof ExecutionProps> & FastOmit<...> & { ...; }'.
+      Property 'initial' does not exist on type 'IntrinsicAttributes & FastOmit<Substitute<FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>, FastOmit<...>>, keyof ExecutionProps> & FastOmit<...> & { ...; }'.
+  Overload 2 of 2, '(props: FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>): ReactElement<...> | null', gave the following error.
+    Type '{ children: (Element | Element[])[]; initial: { y: number; opacity: number; }; animate: { y: number; opacity: number; }; transition: { delay: number; }; }' is not assignable to type 'IntrinsicAttributes & FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>'.
+      Property 'initial' does not exist on type 'IntrinsicAttributes & FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>'.
+    315 |
+    316 |       <PendingUsersList
+  > 317 |         initial={{ y: 20, opacity: 0 }}
+        |         ^^^^^^^
+    318 |         animate={{ y: 0, opacity: 1 }}
+    319 |         transition={{ delay: 0.4 }}
+    320 |       >
+
+ERROR in src/features/auth/pages/LoginPage.tsx:572:43
+TS2345: Argument of type 'AsyncThunkAction<AuthResponse, LoginCredentials, { rejectValue: string; state?: unknown; dispatch?: ThunkDispatch<unknown, unknown, UnknownAction> | undefined; ... 4 more ...; rejectedMeta?: unknown; }>' is not assignable to parameter of type 'UnknownAction'.
+    570 |   const onSubmit = async (data: LoginFormData) => {
+    571 |     try {
+  > 572 |       const resultAction = await dispatch(loginUser({
+        |                                           ^^^^^^^^^^^
+  > 573 |         username: data.username,
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 574 |         password: data.password,
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 575 |       }));
+        | ^^^^^^^^^
+    576 |       
+    577 |       if (loginUser.fulfilled.match(resultAction)) {
+    578 |         if (data.rememberMe) {
+
+ERROR in src/features/live-feeds/pages/LiveFeedsPage.tsx:60:16
+TS2345: Argument of type 'AsyncThunkAction<CameraResponse[], void, { rejectValue: string; state?: unknown; dispatch?: ThunkDispatch<unknown, unknown, UnknownAction> | undefined; extra?: unknown; serializedErrorType?: unknown; pendingMeta?: unknown; fulfilledMeta?: unknown; rejectedMeta?: unknown; }>' is not assignable to parameter of type 'UnknownAction'.
+    58 |   useEffect(() => {
+    59 |     if (status === 'idle') {
+  > 60 |       dispatch(fetchCameras());
+       |                ^^^^^^^^^^^^^^
+    61 |     }
+    62 |   }, [dispatch, status]);
+    63 |
+
+ERROR in src/hooks/useWebSocket.ts:32:31
+TS2554: Expected 1 arguments, but got 0.
+    30 |   const [reconnectAttempts, setReconnectAttempts] = useState(0);
+    31 |   const wsRef = useRef<WebSocket | null>(null);
+  > 32 |   const reconnectTimeoutRef = useRef<NodeJS.Timeout>();
+       |                               ^^^^^^^^^^^^^^^^^^^^^^^^
+    33 |
+    34 |   const connect = useCallback(() => {
+    35 |     try {
+
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+ERROR in src/common/components/UI/FuturisticBorder.tsx:168:7
+TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: PolymorphicComponentProps<"web", Substitute<Omit<HTMLMotionProps<"div">, "ref"> & RefAttributes<HTMLDivElement>, { $variant?: "glow" | "default" | "corner" | "animated" | undefined; $color?: string | undefined; $thickness?: number | undefined; }>, void, void, {}, {}>): Element', gave the following error.
+    Type '{ hidden: { opacity: number; scale: number; }; visible: { opacity: number; scale: number; transition: { duration: number; ease: string; }; }; hover: { scale: number; transition: { duration: number; }; }; }' is not assignable to type 'Variants'.
+      Property 'visible' is incompatible with index signature.
+        Type '{ opacity: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type 'Variant'.
+          Type '{ opacity: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type 'TargetAndTransition'.
+            Type '{ opacity: number; scale: number; transition: { duration: number; ease: string; }; }' is not assignable to type '{ transition?: Transition<any> | undefined; transitionEnd?: ResolvedValues | undefined; }'.
+              Types of property 'transition' are incompatible.
+                Type '{ duration: number; ease: string; }' is not assignable to type 'Transition<any> | undefined'.
+                  Type '{ duration: number; ease: string; }' is not assignable to type 'TransitionWithValueOverrides<any>'.
+                    Type '{ duration: number; ease: string; }' is not assignable to type 'ValueAnimationTransition<any>'.
+                      Types of property 'ease' are incompatible.
+                        Type 'string' is not assignable to type 'Easing | Easing[] | undefined'.
+  Overload 2 of 2, '(props: Substitute<Omit<HTMLMotionProps<"div">, "ref"> & RefAttributes<HTMLDivElement>, { $variant?: "glow" | "default" | "corner" | "animated" | undefined; $color?: string | undefined; $thickness?: number | undefined; }>): ReactElement<...> | null', gave the following error.
+    Type '{ hidden: { opacity: number; scale: number; }; visible: { opacity: number; scale: number; transition: { duration: number; ease: string; }; }; hover: { scale: number; transition: { duration: number; }; }; }' is not assignable to type 'Variants'.
+    166 |       $thickness={thickness}
+    167 |       className={className}
+  > 168 |       variants={borderVariants}
+        |       ^^^^^^^^
+    169 |       initial="hidden"
+    170 |       animate="visible"
+    171 |       whileHover="hover"
+
+ERROR in src/features/admin/pages/AdminPanel.tsx:317:9
+TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: PolymorphicComponentProps<"web", FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>, void, void, {}, {}>): Element', gave the following error.
+    Type '{ children: (Element | Element[])[]; initial: { y: number; opacity: number; }; animate: { y: number; opacity: number; }; transition: { delay: number; }; }' is not assignable to type 'IntrinsicAttributes & FastOmit<Substitute<FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>, FastOmit<...>>, keyof ExecutionProps> & FastOmit<...> & { ...; }'.
+      Property 'initial' does not exist on type 'IntrinsicAttributes & FastOmit<Substitute<FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>, FastOmit<...>>, keyof ExecutionProps> & FastOmit<...> & { ...; }'.
+  Overload 2 of 2, '(props: FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>): ReactElement<...> | null', gave the following error.
+    Type '{ children: (Element | Element[])[]; initial: { y: number; opacity: number; }; animate: { y: number; opacity: number; }; transition: { delay: number; }; }' is not assignable to type 'IntrinsicAttributes & FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>'.
+      Property 'initial' does not exist on type 'IntrinsicAttributes & FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>'.
+    315 |
+    316 |       <PendingUsersList
+  > 317 |         initial={{ y: 20, opacity: 0 }}
+        |         ^^^^^^^
+    318 |         animate={{ y: 0, opacity: 1 }}
+    319 |         transition={{ delay: 0.4 }}
+    320 |       >
+
+ERROR in src/features/auth/pages/LoginPage.tsx:572:43
+TS2345: Argument of type 'AsyncThunkAction<AuthResponse, LoginCredentials, { rejectValue: string; state?: unknown; dispatch?: ThunkDispatch<unknown, unknown, UnknownAction> | undefined; ... 4 more ...; rejectedMeta?: unknown; }>' is not assignable to parameter of type 'UnknownAction'.
+    570 |   const onSubmit = async (data: LoginFormData) => {
+    571 |     try {
+  > 572 |       const resultAction = await dispatch(loginUser({
+        |                                           ^^^^^^^^^^^
+  > 573 |         username: data.username,
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 574 |         password: data.password,
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 575 |       }));
+        | ^^^^^^^^^
+    576 |       
+    577 |       if (loginUser.fulfilled.match(resultAction)) {
+    578 |         if (data.rememberMe) {
+
+ERROR in src/features/live-feeds/pages/LiveFeedsPage.tsx:60:16
+TS2345: Argument of type 'AsyncThunkAction<CameraResponse[], void, { rejectValue: string; state?: unknown; dispatch?: ThunkDispatch<unknown, unknown, UnknownAction> | undefined; extra?: unknown; serializedErrorType?: unknown; pendingMeta?: unknown; fulfilledMeta?: unknown; rejectedMeta?: unknown; }>' is not assignable to parameter of type 'UnknownAction'.
+    58 |   useEffect(() => {
+    59 |     if (status === 'idle') {
+  > 60 |       dispatch(fetchCameras());
+       |                ^^^^^^^^^^^^^^
+    61 |     }
+    62 |   }, [dispatch, status]);
+    63 |
+
+ERROR in src/hooks/useWebSocket.ts:32:31
+TS2554: Expected 1 arguments, but got 0.
+    30 |   const [reconnectAttempts, setReconnectAttempts] = useState(0);
+    31 |   const wsRef = useRef<WebSocket | null>(null);
+  > 32 |   const reconnectTimeoutRef = useRef<NodeJS.Timeout>();
+       |                               ^^^^^^^^^^^^^^^^^^^^^^^^
+    33 |
+    34 |   const connect = useCallback(() => {
+    35 |     try {
+
+Compiling...
+Compiled successfully!
+webpack compiled successfully
+Files successfully emitted, waiting for typecheck results...
+Issues checking in progress...
+ERROR in src/features/admin/pages/AdminPanel.tsx:317:9
+TS2769: No overload matches this call.
+  Overload 1 of 2, '(props: PolymorphicComponentProps<"web", FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>, void, void, {}, {}>): Element', gave the following error.
+    Type '{ children: (Element | Element[])[]; initial: { y: number; opacity: number; }; animate: { y: number; opacity: number; }; transition: { delay: number; }; }' is not assignable to type 'IntrinsicAttributes & FastOmit<Substitute<FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>, FastOmit<...>>, keyof ExecutionProps> & FastOmit<...> & { ...; }'.
+      Property 'initial' does not exist on type 'IntrinsicAttributes & FastOmit<Substitute<FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>, FastOmit<...>>, keyof ExecutionProps> & FastOmit<...> & { ...; }'.
+  Overload 2 of 2, '(props: FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>): ReactElement<...> | null', gave the following error.
+    Type '{ children: (Element | Element[])[]; initial: { y: number; opacity: number; }; animate: { y: number; opacity: number; }; transition: { delay: number; }; }' is not assignable to type 'IntrinsicAttributes & FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>'.
+      Property 'initial' does not exist on type 'IntrinsicAttributes & FastOmit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, never>'.
+    315 |
+    316 |       <PendingUsersList
+  > 317 |         initial={{ y: 20, opacity: 0 }}
+        |         ^^^^^^^
+    318 |         animate={{ y: 0, opacity: 1 }}
+    319 |         transition={{ delay: 0.4 }}
+    320 |       >
+
+ERROR in src/features/auth/pages/LoginPage.tsx:572:43
+TS2345: Argument of type 'AsyncThunkAction<AuthResponse, LoginCredentials, { rejectValue: string; state?: unknown; dispatch?: ThunkDispatch<unknown, unknown, UnknownAction> | undefined; ... 4 more ...; rejectedMeta?: unknown; }>' is not assignable to parameter of type 'UnknownAction'.
+    570 |   const onSubmit = async (data: LoginFormData) => {
+    571 |     try {
+  > 572 |       const resultAction = await dispatch(loginUser({
+        |                                           ^^^^^^^^^^^
+  > 573 |         username: data.username,
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 574 |         password: data.password,
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 575 |       }));
+        | ^^^^^^^^^
+    576 |       
+    577 |       if (loginUser.fulfilled.match(resultAction)) {
+    578 |         if (data.rememberMe) {
+
+ERROR in src/features/live-feeds/pages/LiveFeedsPage.tsx:60:16
+TS2345: Argument of type 'AsyncThunkAction<CameraResponse[], void, { rejectValue: string; state?: unknown; dispatch?: ThunkDispatch<unknown, unknown, UnknownAction> | undefined; extra?: unknown; serializedErrorType?: unknown; pendingMeta?: unknown; fulfilledMeta?: unknown; rejectedMeta?: unknown; }>' is not assignable to parameter of type 'UnknownAction'.
+    58 |   useEffect(() => {
+    59 |     if (status === 'idle') {
+  > 60 |       dispatch(fetchCameras());
+       |                ^^^^^^^^^^^^^^
+    61 |     }
+    62 |   }, [dispatch, status]);
+    63 |
+
+ERROR in src/hooks/useWebSocket.ts:32:31
+TS2554: Expected 1 arguments, but got 0.
+    30 |   const [reconnectAttempts, setReconnectAttempts] = useState(0);
+    31 |   const wsRef = useRef<WebSocket | null>(null);
+  > 32 |   const reconnectTimeoutRef = useRef<NodeJS.Timeout>();
+       |                               ^^^^^^^^^^^^^^^^^^^^^^^^
+    33 |
+    34 |   const connect = useCallback(() => {
+    35 |     try {
+
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/features/admin/pages/AdminPanel.tsx
+  Line 231:10:  Unexpected use of 'confirm'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+ERROR in [eslint] 
+src/features/admin/pages/AdminPanel.tsx
+  Line 231:10:  Unexpected use of 'confirm'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+
+webpack compiled with 1 error
+Files successfully emitted, waiting for typecheck results...
+Issues checking in progress...
+ERROR in src/features/auth/pages/LoginPage.tsx:572:43
+TS2345: Argument of type 'AsyncThunkAction<AuthResponse, LoginCredentials, { rejectValue: string; state?: unknown; dispatch?: ThunkDispatch<unknown, unknown, UnknownAction> | undefined; ... 4 more ...; rejectedMeta?: unknown; }>' is not assignable to parameter of type 'UnknownAction'.
+    570 |   const onSubmit = async (data: LoginFormData) => {
+    571 |     try {
+  > 572 |       const resultAction = await dispatch(loginUser({
+        |                                           ^^^^^^^^^^^
+  > 573 |         username: data.username,
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 574 |         password: data.password,
+        | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  > 575 |       }));
+        | ^^^^^^^^^
+    576 |       
+    577 |       if (loginUser.fulfilled.match(resultAction)) {
+    578 |         if (data.rememberMe) {
+
+ERROR in src/features/live-feeds/pages/LiveFeedsPage.tsx:60:16
+TS2345: Argument of type 'AsyncThunkAction<CameraResponse[], void, { rejectValue: string; state?: unknown; dispatch?: ThunkDispatch<unknown, unknown, UnknownAction> | undefined; extra?: unknown; serializedErrorType?: unknown; pendingMeta?: unknown; fulfilledMeta?: unknown; rejectedMeta?: unknown; }>' is not assignable to parameter of type 'UnknownAction'.
+    58 |   useEffect(() => {
+    59 |     if (status === 'idle') {
+  > 60 |       dispatch(fetchCameras());
+       |                ^^^^^^^^^^^^^^
+    61 |     }
+    62 |   }, [dispatch, status]);
+    63 |
+
+ERROR in src/hooks/useWebSocket.ts:32:31
+TS2554: Expected 1 arguments, but got 0.
+    30 |   const [reconnectAttempts, setReconnectAttempts] = useState(0);
+    31 |   const wsRef = useRef<WebSocket | null>(null);
+  > 32 |   const reconnectTimeoutRef = useRef<NodeJS.Timeout>();
+       |                               ^^^^^^^^^^^^^^^^^^^^^^^^
+    33 |
+    34 |   const connect = useCallback(() => {
+    35 |     try {
+
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/features/admin/pages/AdminPanel.tsx
+  Line 231:10:  Unexpected use of 'confirm'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+WARNING in [eslint] 
+src/features/auth/pages/LoginPage.tsx
+  Line 355:7:  'PasswordStrength' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  Line 376:7:  'StrengthLabel' is assigned a value but never used     @typescript-eslint/no-unused-vars
+
+ERROR in [eslint] 
+src/features/admin/pages/AdminPanel.tsx
+  Line 231:10:  Unexpected use of 'confirm'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+
+webpack compiled with 1 error and 1 warning
+Files successfully emitted, waiting for typecheck results...
+Issues checking in progress...
+ERROR in src/features/live-feeds/pages/LiveFeedsPage.tsx:60:16
+TS2345: Argument of type 'AsyncThunkAction<CameraResponse[], void, { rejectValue: string; state?: unknown; dispatch?: ThunkDispatch<unknown, unknown, UnknownAction> | undefined; extra?: unknown; serializedErrorType?: unknown; pendingMeta?: unknown; fulfilledMeta?: unknown; rejectedMeta?: unknown; }>' is not assignable to parameter of type 'UnknownAction'.
+    58 |   useEffect(() => {
+    59 |     if (status === 'idle') {
+  > 60 |       dispatch(fetchCameras());
+       |                ^^^^^^^^^^^^^^
+    61 |     }
+    62 |   }, [dispatch, status]);
+    63 |
+
+ERROR in src/hooks/useWebSocket.ts:32:31
+TS2554: Expected 1 arguments, but got 0.
+    30 |   const [reconnectAttempts, setReconnectAttempts] = useState(0);
+    31 |   const wsRef = useRef<WebSocket | null>(null);
+  > 32 |   const reconnectTimeoutRef = useRef<NodeJS.Timeout>();
+       |                               ^^^^^^^^^^^^^^^^^^^^^^^^
+    33 |
+    34 |   const connect = useCallback(() => {
+    35 |     try {
+
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/features/admin/pages/AdminPanel.tsx
+  Line 231:10:  Unexpected use of 'confirm'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+WARNING in [eslint] 
+src/features/auth/pages/LoginPage.tsx
+  Line 355:7:  'PasswordStrength' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  Line 376:7:  'StrengthLabel' is assigned a value but never used     @typescript-eslint/no-unused-vars
+
+ERROR in [eslint] 
+src/features/admin/pages/AdminPanel.tsx
+  Line 231:10:  Unexpected use of 'confirm'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+
+webpack compiled with 1 error and 1 warning
+ERROR in src/hooks/useWebSocket.ts:32:31
+TS2554: Expected 1 arguments, but got 0.
+    30 |   const [reconnectAttempts, setReconnectAttempts] = useState(0);
+    31 |   const wsRef = useRef<WebSocket | null>(null);
+  > 32 |   const reconnectTimeoutRef = useRef<NodeJS.Timeout>();
+       |                               ^^^^^^^^^^^^^^^^^^^^^^^^
+    33 |
+    34 |   const connect = useCallback(() => {
+    35 |     try {
+
+Compiling...
+Failed to compile.
+
+[eslint] 
+src/features/admin/pages/AdminPanel.tsx
+  Line 231:10:  Unexpected use of 'confirm'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+WARNING in [eslint] 
+src/features/auth/pages/LoginPage.tsx
+  Line 355:7:  'PasswordStrength' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  Line 376:7:  'StrengthLabel' is assigned a value but never used     @typescript-eslint/no-unused-vars
+
+ERROR in [eslint] 
+src/features/admin/pages/AdminPanel.tsx
+  Line 231:10:  Unexpected use of 'confirm'  no-restricted-globals
+
+Search for the keywords to learn more about each error.
+
+webpack compiled with 1 error and 1 warning
+No issues found.
+Compiling...
+Compiled with warnings.
+
+[eslint] 
+src/features/auth/pages/LoginPage.tsx
+  Line 355:7:  'PasswordStrength' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  Line 376:7:  'StrengthLabel' is assigned a value but never used     @typescript-eslint/no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+WARNING in [eslint] 
+src/features/auth/pages/LoginPage.tsx
+  Line 355:7:  'PasswordStrength' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  Line 376:7:  'StrengthLabel' is assigned a value but never used     @typescript-eslint/no-unused-vars
+
+webpack compiled with 1 warning
+Files successfully emitted, waiting for typecheck results...
+Issues checking in progress...
+No issues found.
+The build failed because the process exited too early. This probably means the system ran out of memory or someone called `kill -9` on the process.
+npm notice
+npm notice New patch version of npm available! 11.6.0 -> 11.6.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.6.2
+npm notice To update run: npm install -g npm@11.6.2
+npm notice

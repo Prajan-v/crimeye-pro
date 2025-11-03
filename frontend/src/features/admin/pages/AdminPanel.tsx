@@ -73,7 +73,7 @@ const StatLabel = styled.div`
   color: ${({ theme }) => theme.colors.text.secondary};
 `;
 
-const PendingUsersList = styled.div`
+const PendingUsersList = styled(motion.div)`
   background: ${({ theme }) => theme.colors.glass.background};
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -228,7 +228,7 @@ const AdminPanel: React.FC = () => {
   };
 
   const handleRejectUser = async (userId: number) => {
-    if (!confirm('Are you sure you want to reject this user? This action cannot be undone.')) {
+    if (!window.confirm('Are you sure you want to reject this user? This action cannot be undone.')) {
       return;
     }
     

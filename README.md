@@ -2,7 +2,7 @@
 
 **Enterprise-Grade Real-Time Surveillance & Threat Detection System**
 
-A production-ready, AI-powered surveillance platform with real-time object detection, threat analysis, and instant alerting capabilities.
+A production-ready, AI-powered surveillance platform with real-time object detection, threat analysis, and instant alerting capabilities and work monitoring.
 
 ---
 

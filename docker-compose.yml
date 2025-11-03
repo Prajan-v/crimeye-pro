@@ -1,0 +1,143 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:14-alpine
+    container_name: crimeye-postgres
+    environment:
+      POSTGRES_USER: prajanv
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-crimeye2024}
+      POSTGRES_DB: crimeye_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U prajanv -d crimeye_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - crimeye-network
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: crimeye-redis
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - crimeye-network
+
+  # YOLO Detection Service
+  yolo-service:
+    build:
+      context: ./yolo-service
+      dockerfile: Dockerfile
+    container_name: crimeye-yolo
+    ports:
+      - "5002:5002"
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./yolo-service:/app
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5002/yolo-health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - crimeye-network
+    restart: unless-stopped
+
+  # FastAPI Backend
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: crimeye-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://prajanv:${DB_PASSWORD:-crimeye2024}@postgres:5432/crimeye_db
+      - REDIS_URL=redis://redis:6379
+      - YOLO_SERVICE_URL=http://yolo-service:5002
+      - SECRET_KEY=${SECRET_KEY:-your-super-secret-key-change-this}
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./backend:/app
+      - static_files:/app/static
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      yolo-service:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - crimeye-network
+    restart: unless-stopped
+
+  # React Frontend
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: crimeye-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:8000
+      - REACT_APP_WS_URL=ws://localhost:8000
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    networks:
+      - crimeye-network
+    restart: unless-stopped
+
+  # Node.js Backend (Legacy - Optional)
+  nodejs-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.nodejs
+    container_name: crimeye-nodejs
+    ports:
+      - "5001:5001"
+    environment:
+      - DATABASE_URL=postgresql://prajanv:${DB_PASSWORD:-crimeye2024}@postgres:5432/crimeye_db
+      - NODE_ENV=production
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - crimeye-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  static_files:
+
+networks:
+  crimeye-network:
+    driver: bridge

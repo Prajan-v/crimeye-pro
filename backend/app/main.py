@@ -1,6 +1,7 @@
 from fastapi import FastAPI, Request, HTTPException, WebSocket, WebSocketDisconnect
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import JSONResponse
 from fastapi.staticfiles import StaticFiles
 from contextlib import asynccontextmanager
@@ -17,6 +18,7 @@ from app.services.ollama_service import ollama_service
 from app.services.websocket_manager import manager
 from app.services.webcam_service import webcam_service
 from app.middleware.rate_limit import general_rate_limit
+from app.middleware.security import SecurityHeadersMiddleware, CSRFProtectionMiddleware, RequestSizeLimitMiddleware
 from app.cli import create_default_webcam
 from app.models.camera import Camera
 from sqlalchemy import select
@@ -103,9 +105,24 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="CrimeEye-Pro API",
     description="Enterprise-grade surveillance system API",
-    version="1.0.0",
-    lifespan=lifespan
+    version="2.0.0",
+    lifespan=lifespan,
+    docs_url="/api/docs",
+    redoc_url="/api/redoc",
+    openapi_url="/api/openapi.json"
 )
+
+# Add security headers middleware
+app.add_middleware(SecurityHeadersMiddleware)
+
+# Add CSRF protection
+app.add_middleware(CSRFProtectionMiddleware, secret_key=settings.SECRET_KEY)
+
+# Add request size limit
+app.add_middleware(RequestSizeLimitMiddleware, max_size=10 * 1024 * 1024)  # 10MB
+
+# Add GZip compression
+app.add_middleware(GZipMiddleware, minimum_size=1000)
 
 # Security middleware
 app.add_middleware(
@@ -120,6 +137,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allow_headers=["*"],
+    expose_headers=["X-CSRF-Token"]
 )
 
 # Request timing middleware

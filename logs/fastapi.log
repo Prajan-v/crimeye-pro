@@ -1,0 +1,2619 @@
+INFO:     Will watch for changes in these directories: ['/Users/prajanv/Desktop/crimeye-pro/backend']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [2893] using WatchFiles
+/Users/prajanv/Desktop/crimeye-pro/backend/venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+INFO:     Started server process [2898]
+INFO:     Waiting for application startup.
+INFO:app.main:🚀 Starting CrimeEye-Pro FastAPI Backend...
+2025-11-03 18:03:55,707 INFO sqlalchemy.engine.Engine select pg_catalog.version()
+INFO:sqlalchemy.engine.Engine:select pg_catalog.version()
+2025-11-03 18:03:55,708 INFO sqlalchemy.engine.Engine [raw sql] ()
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+2025-11-03 18:03:55,710 INFO sqlalchemy.engine.Engine select current_schema()
+INFO:sqlalchemy.engine.Engine:select current_schema()
+2025-11-03 18:03:55,710 INFO sqlalchemy.engine.Engine [raw sql] ()
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+2025-11-03 18:03:55,712 INFO sqlalchemy.engine.Engine show standard_conforming_strings
+INFO:sqlalchemy.engine.Engine:show standard_conforming_strings
+2025-11-03 18:03:55,712 INFO sqlalchemy.engine.Engine [raw sql] ()
+INFO:sqlalchemy.engine.Engine:[raw sql] ()
+2025-11-03 18:03:55,712 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2025-11-03 18:03:55,714 INFO sqlalchemy.engine.Engine SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+INFO:sqlalchemy.engine.Engine:SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2025-11-03 18:03:55,714 INFO sqlalchemy.engine.Engine [generated in 0.00011s] ('admin_user', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+INFO:sqlalchemy.engine.Engine:[generated in 0.00011s] ('admin_user', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2025-11-03 18:03:55,720 INFO sqlalchemy.engine.Engine SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+INFO:sqlalchemy.engine.Engine:SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2025-11-03 18:03:55,720 INFO sqlalchemy.engine.Engine [cached since 0.005963s ago] ('cameras', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+INFO:sqlalchemy.engine.Engine:[cached since 0.005963s ago] ('cameras', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2025-11-03 18:03:55,720 INFO sqlalchemy.engine.Engine SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+INFO:sqlalchemy.engine.Engine:SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2025-11-03 18:03:55,720 INFO sqlalchemy.engine.Engine [cached since 0.00633s ago] ('detection_frames', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+INFO:sqlalchemy.engine.Engine:[cached since 0.00633s ago] ('detection_frames', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2025-11-03 18:03:55,720 INFO sqlalchemy.engine.Engine SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+INFO:sqlalchemy.engine.Engine:SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2025-11-03 18:03:55,720 INFO sqlalchemy.engine.Engine [cached since 0.006639s ago] ('detection_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+INFO:sqlalchemy.engine.Engine:[cached since 0.006639s ago] ('detection_logs', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2025-11-03 18:03:55,721 INFO sqlalchemy.engine.Engine SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+INFO:sqlalchemy.engine.Engine:SELECT pg_catalog.pg_class.relname 
+FROM pg_catalog.pg_class JOIN pg_catalog.pg_namespace ON pg_catalog.pg_namespace.oid = pg_catalog.pg_class.relnamespace 
+WHERE pg_catalog.pg_class.relname = $1::VARCHAR AND pg_catalog.pg_class.relkind = ANY (ARRAY[$2::VARCHAR, $3::VARCHAR, $4::VARCHAR, $5::VARCHAR, $6::VARCHAR]) AND pg_catalog.pg_table_is_visible(pg_catalog.pg_class.oid) AND pg_catalog.pg_namespace.nspname != $7::VARCHAR
+2025-11-03 18:03:55,721 INFO sqlalchemy.engine.Engine [cached since 0.006934s ago] ('alerts', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+INFO:sqlalchemy.engine.Engine:[cached since 0.006934s ago] ('alerts', 'r', 'p', 'f', 'v', 'm', 'pg_catalog')
+2025-11-03 18:03:55,721 INFO sqlalchemy.engine.Engine COMMIT
+INFO:sqlalchemy.engine.Engine:COMMIT
+INFO:app.main:✅ Database tables initialized
+INFO:httpx:HTTP Request: GET http://localhost:5002/yolo-health "HTTP/1.1 200 OK"
+INFO:app.services.yolo_integration:✅ Connected to YOLO service at http://localhost:5002
+INFO:app.main:✅ YOLO integration service initialized
+ERROR:app.services.ollama_service:❌ Failed to connect to Ollama service: All connection attempts failed
+INFO:app.services.ollama_service:System will continue without LLM analysis
+INFO:app.main:✅ Ollama service initialized
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Adding job tentatively -- it will be properly scheduled when the scheduler starts
+INFO:apscheduler.scheduler:Added job "Daily Frame Cleanup" to job store "default"
+INFO:apscheduler.scheduler:Added job "Daily Summary Report" to job store "default"
+INFO:apscheduler.scheduler:Scheduler started
+INFO:app.services.cleanup_service:Cleanup service started
+INFO:app.main:✅ Cleanup service started
+INFO:app.main:✅ Static directories created
+2025-11-03 18:03:55,744 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2025-11-03 18:03:55,748 INFO sqlalchemy.engine.Engine SELECT cameras.id, cameras.name, cameras.rtsp_url, cameras.location, cameras.status, cameras.is_system_camera, cameras.created_at 
+FROM cameras 
+WHERE cameras.name = $1::VARCHAR
+INFO:sqlalchemy.engine.Engine:SELECT cameras.id, cameras.name, cameras.rtsp_url, cameras.location, cameras.status, cameras.is_system_camera, cameras.created_at 
+FROM cameras 
+WHERE cameras.name = $1::VARCHAR
+2025-11-03 18:03:55,748 INFO sqlalchemy.engine.Engine [generated in 0.00008s] ('Mac Webcam',)
+INFO:sqlalchemy.engine.Engine:[generated in 0.00008s] ('Mac Webcam',)
+INFO:app.cli:✅ Default webcam camera already exists: Mac Webcam
+INFO:app.services.webcam_service:Starting FFmpeg stream: ffmpeg -f avfoundation -i 0 -c:v libx264 -preset fast -crf 25 -maxrate 1M -bufsize 2M -r 15 -s 1280x720 -f rtsp rtsp://localhost:8554/demo
+ERROR:app.services.webcam_service:FFmpeg process failed to start: ffmpeg version 8.0 Copyright (c) 2000-2025 the FFmpeg developers
+  built with Apple clang version 17.0.0 (clang-1700.0.13.3)
+  configuration: --prefix=/opt/homebrew/Cellar/ffmpeg/8.0_1 --enable-shared --enable-pthreads --enable-version3 --cc=clang --host-cflags= --host-ldflags='-Wl,-ld_classic' --enable-ffplay --enable-gnutls --enable-gpl --enable-libaom --enable-libaribb24 --enable-libbluray --enable-libdav1d --enable-libharfbuzz --enable-libjxl --enable-libmp3lame --enable-libopus --enable-librav1e --enable-librist --enable-librubberband --enable-libsnappy --enable-libsrt --enable-libssh --enable-libsvtav1 --enable-libtesseract --enable-libtheora --enable-libvidstab --enable-libvmaf --enable-libvorbis --enable-libvpx --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libxvid --enable-lzma --enable-libfontconfig --enable-libfreetype --enable-frei0r --enable-libass --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libspeex --enable-libsoxr --enable-libzmq --enable-libzimg --disable-libjack --disable-indev=jack --enable-videotoolbox --enable-audiotoolbox --enable-neon
+  libavutil      60.  8.100 / 60.  8.100
+  libavcodec     62. 11.100 / 62. 11.100
+  libavformat    62.  3.100 / 62.  3.100
+  libavdevice    62.  1.100 / 62.  1.100
+  libavfilter    11.  4.100 / 11.  4.100
+  libswscale      9.  1.100 /  9.  1.100
+  libswresample   6.  1.100 /  6.  1.100
+2025-11-03 18:03:56.279 ffmpeg[2979:35919] WARNING: Add NSCameraUseContinuityCameraDeviceType to your Info.plist to use AVCaptureDeviceTypeContinuityCamera.
+[avfoundation @ 0x14e631680] Selected framerate (29.970030) is not supported by the device.
+[avfoundation @ 0x14e631680] Supported modes:
+[avfoundation @ 0x14e631680]   1920x1080@[15.000000 30.000000]fps
+[avfoundation @ 0x14e631680]   1280x720@[15.000000 30.000000]fps
+[avfoundation @ 0x14e631680]   1080x1920@[15.000000 30.000000]fps
+[avfoundation @ 0x14e631680]   1760x1328@[15.000000 30.000000]fps
+[avfoundation @ 0x14e631680]   640x480@[15.000000 30.000000]fps
+[avfoundation @ 0x14e631680]   1328x1760@[15.000000 30.000000]fps
+[avfoundation @ 0x14e631680]   1552x1552@[15.000000 30.000000]fps
+[in#0 @ 0x14e631420] Error opening input: Input/output error
+Error opening input file 0.
+Error opening input files: Input/output error
+
+2025-11-03 18:03:58,240 INFO sqlalchemy.engine.Engine COMMIT
+INFO:sqlalchemy.engine.Engine:COMMIT
+WARNING:app.main:⚠️  Default webcam camera is offline (stream failed)
+INFO:app.main:✅ CrimeEye-Pro FastAPI Backend running on port 8000
+INFO:app.main:📡 WebSocket endpoint: ws://localhost:8000/ws
+INFO:app.main:📚 API Documentation: http://localhost:8000/docs
+INFO:     Application startup complete.
+INFO:     127.0.0.1:51787 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51883 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:51965 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52032 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52113 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52234 - "GET /api/docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:52288 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52290 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52292 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52294 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52301 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52307 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52309 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52311 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52325 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52327 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52329 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52331 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52355 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52357 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52359 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52363 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52387 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52389 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52391 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52393 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:52417 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52419 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52421 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52423 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52447 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52449 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52451 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52455 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:52476 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52478 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52480 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52482 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:     127.0.0.1:52505 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52507 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52509 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52511 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52537 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52539 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52541 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52543 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52569 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52571 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52573 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52575 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:52589 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52591 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52593 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52595 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:52600 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52602 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52605 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52606 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:52628 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52630 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52632 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52634 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52653 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52655 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52657 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52659 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52678 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52680 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52682 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52684 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52701 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52703 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52705 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52707 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52727 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52729 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52731 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52733 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52753 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52755 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52757 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52759 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52778 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52780 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52782 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52784 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52803 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52805 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52807 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52809 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52828 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52830 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52832 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52834 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:     127.0.0.1:52853 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:     connection open
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52855 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52857 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52859 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52878 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52880 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52882 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52884 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52903 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52905 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52907 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52909 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:52928 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52930 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52932 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52934 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:52960 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52962 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52964 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52966 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:52987 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52989 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:52991 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:52993 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:     127.0.0.1:52997 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:52999 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53001 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53003 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:53006 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53008 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53010 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53012 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:53015 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53017 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53019 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53021 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:     127.0.0.1:53031 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53033 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53035 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53037 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:     127.0.0.1:53062 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53064 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53066 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53068 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:     127.0.0.1:53090 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53092 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53094 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53096 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:     127.0.0.1:53113 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53115 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53117 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53119 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:     127.0.0.1:53138 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:     connection open
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53140 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53142 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53144 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:53164 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53166 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53168 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53170 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:53427 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53429 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53431 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53433 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:53436 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53438 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53440 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53442 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:53456 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53458 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53460 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53462 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:53481 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53483 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53485 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53487 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:53506 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53508 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53510 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53512 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:53534 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53536 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53538 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53540 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:53559 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53561 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53563 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53565 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:53585 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53587 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53589 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53591 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     127.0.0.1:53814 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53816 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53818 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53820 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:53823 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53825 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53827 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53829 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:53845 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53847 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53849 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53853 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:53875 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53877 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53879 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53883 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:53904 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53906 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53908 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53912 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:53933 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53935 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53937 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53941 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:     127.0.0.1:53962 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53964 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53966 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53970 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:53991 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:53993 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:53995 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:53999 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:     127.0.0.1:54007 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:54009 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:54011 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:54013 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+INFO:     127.0.0.1:54026 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 5
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 4
+INFO:     connection closed
+INFO:     connection open
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DESKTOP_WEBCAM
+INFO:     127.0.0.1:54028 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 2
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_ENTRANCE
+INFO:     127.0.0.1:54030 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 3
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_PARKING
+INFO:     127.0.0.1:54034 - "WebSocket /ws" [accepted]
+INFO:app.services.websocket_manager:✅ WebSocket connected. Total connections: 4
+INFO:     connection open
+INFO:app.services.websocket_manager:📹 Client subscribed to camera DEMO_WAREHOUSE
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:httpx:HTTP Request: POST http://localhost:5002/detect-frame "HTTP/1.1 200 OK"
+INFO:app.main:LLM analysis triggered for camera DESKTOP_WEBCAM
+ERROR:app.services.ollama_service:Error analyzing detection with Ollama: All connection attempts failed
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DESKTOP_WEBCAM
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_ENTRANCE
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_PARKING
+INFO:app.services.websocket_manager:📹 Client unsubscribed from camera DEMO_WAREHOUSE
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 3
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 2
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 1
+INFO:     connection closed
+ERROR:app.services.websocket_manager:Error sending personal message: 
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:     connection closed
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0
+INFO:app.services.websocket_manager:❌ WebSocket disconnected. Total connections: 0

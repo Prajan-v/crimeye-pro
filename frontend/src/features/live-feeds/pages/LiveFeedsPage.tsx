@@ -57,7 +57,7 @@ const LiveFeedsPage: React.FC = () => {
 
   useEffect(() => {
     if (status === 'idle') {
-      dispatch(fetchCameras());
+      dispatch(fetchCameras() as any);
     }
   }, [dispatch, status]);
 
