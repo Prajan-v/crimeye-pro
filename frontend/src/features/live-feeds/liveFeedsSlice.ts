@@ -28,7 +28,7 @@ const demoCameras: CameraResponse[] = [
     name: 'HQ Main Entrance',
     rtsp_url: 'rtsp://demo.local/entrance',
     location: 'Ground Floor',
-    status: 'online',
+    status: 'offline',
     is_system_camera: false,
     created_at: createTimestamp(),
   },

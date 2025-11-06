@@ -8,6 +8,8 @@ from contextlib import asynccontextmanager
 import logging
 import time
 import os
+from datetime import datetime
+import httpx
 
 from app.core.config import settings
 from app.core.database import async_engine, Base, AsyncSessionLocal
@@ -187,6 +189,7 @@ async def root():
 
 # Mount static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
+app.mount("/captured_frames", StaticFiles(directory="captured_frames"), name="captured_frames")
 
 # Include routers
 app.include_router(auth.router)
@@ -266,6 +269,53 @@ async def websocket_endpoint(websocket: WebSocket):
                                             'threat_level': threat_level
                                         })
                                 
+                                # Save frame as image file if there are detections
+                                image_path = None
+                                if detections:
+                                    try:
+                                        # Create captured_frames directory if it doesn't exist
+                                        import os
+                                        os.makedirs('captured_frames', exist_ok=True)
+                                        
+                                        # Generate filename with timestamp
+                                        timestamp = int(time.time() * 1000)
+                                        filename = f"detection_{camera_id}_{timestamp}.jpg"
+                                        filepath = f"captured_frames/{filename}"
+                                        
+                                        # Save frame to file
+                                        cv2.imwrite(filepath, frame)
+                                        image_path = f"captured_frames/{filename}"
+                                        logger.info(f"Saved detection frame: {image_path}")
+                                        
+                                        # Create detection record for Node.js backend
+                                        detection_record = {
+                                            'id': timestamp,
+                                            'timestamp': datetime.utcnow().isoformat(),
+                                            'camera_id': 'WEB_CAMERA',  # Use consistent camera ID
+                                            'image_path': image_path,
+                                            'yolo_alerts': alerts,
+                                            'llm_report': "Real-time detection processed",
+                                            'threat_level': threat_level.upper()
+                                        }
+                                        
+                                        # Report to Node.js backend for storage
+                                        try:
+                                            async with httpx.AsyncClient() as client:
+                                                response = await client.post(
+                                                    "http://localhost:5001/api/analysis/report_detection",
+                                                    json=detection_record,
+                                                    timeout=2.0
+                                                )
+                                                if response.status_code == 200:
+                                                    logger.info(f"Reported detection to Node.js backend")
+                                                else:
+                                                    logger.warning(f"Failed to report detection to Node.js backend: {response.status_code}")
+                                        except Exception as e:
+                                            logger.error(f"Error reporting detection to Node.js backend: {e}")
+                                            
+                                    except Exception as e:
+                                        logger.error(f"Error saving detection frame: {e}")
+                                
                                 # Send detection update to subscribers
                                 await manager.broadcast_to_camera_subscribers(camera_id, {
                                     'type': 'detection',
@@ -273,6 +323,7 @@ async def websocket_endpoint(websocket: WebSocket):
                                     'detections': detections,
                                     'alerts': alerts,
                                     'threat_level': threat_level,
+                                    'image_path': image_path,
                                     'timestamp': time.time()
                                 })
                                 

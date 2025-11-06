@@ -1,30 +1,86 @@
-node:internal/modules/cjs/loader:1423
-  throw err;
-  ^
-
-Error: Cannot find module 'depd'
-Require stack:
-- /Users/prajanv/Desktop/crimeye-pro/node_modules/body-parser/index.js
-- /Users/prajanv/Desktop/crimeye-pro/node_modules/express/lib/express.js
-- /Users/prajanv/Desktop/crimeye-pro/node_modules/express/index.js
-- /Users/prajanv/Desktop/crimeye-pro/server.js
-    at Module._resolveFilename (node:internal/modules/cjs/loader:1420:15)
-    at defaultResolveImpl (node:internal/modules/cjs/loader:1058:19)
-    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1063:22)
-    at Module._load (node:internal/modules/cjs/loader:1226:37)
-    at TracingChannel.traceSync (node:diagnostics_channel:328:14)
-    at wrapModuleLoad (node:internal/modules/cjs/loader:244:24)
-    at Module.require (node:internal/modules/cjs/loader:1503:12)
-    at require (node:internal/modules/helpers:152:16)
-    at Object.<anonymous> (/Users/prajanv/Desktop/crimeye-pro/node_modules/body-parser/index.js:14:17)
-    at Module._compile (node:internal/modules/cjs/loader:1760:14) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [
-    '/Users/prajanv/Desktop/crimeye-pro/node_modules/body-parser/index.js',
-    '/Users/prajanv/Desktop/crimeye-pro/node_modules/express/lib/express.js',
-    '/Users/prajanv/Desktop/crimeye-pro/node_modules/express/index.js',
-    '/Users/prajanv/Desktop/crimeye-pro/server.js'
-  ]
-}
-
-Node.js v24.10.0
+⏳ Initializing PostgreSQL pool for crimeye_db on localhost:5432...
+✅ Serving static files from: /Users/prajanv/Desktop/crimeye-pro/backend/static
+✅ Serving captured frames from: /Users/prajanv/Desktop/crimeye-pro/backend/captured_frames
+🛠️ Attempting to mount API routes...
+--- Loading routes/auth.js ---
+✅ Successfully required authController.
+>>> Type of loginUser imported: function
+✅ Route POST /login configured.
+--- Finished loading routes/auth.js ---
+✅ API routes mounted successfully.
+⏳ Initializing database...
+ -> Attempting database connection test...
+ -> ✅ Database connected successfully.
+ -> ✅ Database tables checked/created successfully.
+ -> ✅ Initial DB client released.
+✅ Database initialization complete.
+🚀 Backend server running on http://localhost:5001
+➡️ OPTIONS /api/analysis/detections?limit=50 (from ::1)
+⬅️ OPTIONS /api/analysis/detections?limit=50 204 No Content (4ms)
+➡️ GET /api/analysis/detections?limit=50 (from ::1)
+[Analysis] Found 4 image files in captured_frames
+[Analysis] Generated LLM analysis for threat_1760248816641.jpg: Security Alert: Suspicious activity detected in su...
+[Analysis] Added detection for threat_1760248816641.jpg with camera_id: WEB_CAMERA
+[Analysis] Generated LLM analysis for threat_1760248817691.jpg: Threat Assessment: Anomalous behavior pattern iden...
+[Analysis] Added detection for threat_1760248817691.jpg with camera_id: WEB_CAMERA
+[Analysis] Generated LLM analysis for threat_1760248817740.jpg: High Priority Alert: Surveillance system has flagg...
+[Analysis] Added detection for threat_1760248817740.jpg with camera_id: WEB_CAMERA
+[Analysis] Generated LLM analysis for threat_1760248822546.jpg: Security Alert: Suspicious activity detected in su...
+[Analysis] Added detection for threat_1760248822546.jpg with camera_id: WEB_CAMERA
+[Analysis] Total detections in memory: 4
+⬅️ GET /api/analysis/detections?limit=50 200 OK (17ms)
+➡️ OPTIONS /api/cameras (from ::1)
+⬅️ OPTIONS /api/cameras 204 No Content (1ms)
+➡️ GET /api/cameras (from ::1)
+⬅️ GET /api/cameras 404 Not Found (2ms)
+➡️ OPTIONS /api/cameras (from ::1)
+⬅️ OPTIONS /api/cameras 204 No Content (1ms)
+➡️ GET /api/cameras (from ::1)
+⬅️ GET /api/cameras 404 Not Found (1ms)
+➡️ OPTIONS /api/analysis/detections?limit=50 (from ::1)
+⬅️ OPTIONS /api/analysis/detections?limit=50 204 No Content (0ms)
+➡️ GET /api/analysis/detections?limit=50 (from ::1)
+[Analysis] Found 4 image files in captured_frames
+[Analysis] Skipping threat_1760248816641.jpg - already exists
+[Analysis] Skipping threat_1760248817691.jpg - already exists
+[Analysis] Skipping threat_1760248817740.jpg - already exists
+[Analysis] Skipping threat_1760248822546.jpg - already exists
+[Analysis] Total detections in memory: 4
+⬅️ GET /api/analysis/detections?limit=50 304 Not Modified (1ms)
+➡️ OPTIONS /api/auth/login (from ::1)
+⬅️ OPTIONS /api/auth/login 204 No Content (1ms)
+➡️ POST /api/auth/login (from ::1)
+--- loginUser function called ---
+Attempting login for user: CrimeEye
+User found: CrimeEye (ID: 5). Comparing password...
+Password match successful for user: CrimeEye
+✅ JWT generated for user: CrimeEye
+⬅️ POST /api/auth/login 200 OK (99ms)
+➡️ OPTIONS /api/analysis/detections?limit=50 (from ::1)
+⬅️ OPTIONS /api/analysis/detections?limit=50 204 No Content (0ms)
+➡️ GET /api/analysis/detections?limit=50 (from ::1)
+[Analysis] Found 4 image files in captured_frames
+[Analysis] Skipping threat_1760248816641.jpg - already exists
+[Analysis] Skipping threat_1760248817691.jpg - already exists
+[Analysis] Skipping threat_1760248817740.jpg - already exists
+[Analysis] Skipping threat_1760248822546.jpg - already exists
+[Analysis] Total detections in memory: 4
+⬅️ GET /api/analysis/detections?limit=50 200 OK (1ms)
+➡️ OPTIONS /api/cameras (from ::1)
+⬅️ OPTIONS /api/cameras 204 No Content (1ms)
+➡️ GET /api/cameras (from ::1)
+⬅️ GET /api/cameras 404 Not Found (1ms)
+➡️ OPTIONS /api/analysis/detections?limit=50 (from ::1)
+⬅️ OPTIONS /api/analysis/detections?limit=50 204 No Content (1ms)
+➡️ GET /api/analysis/detections?limit=50 (from ::1)
+[Analysis] Found 4 image files in captured_frames
+[Analysis] Skipping threat_1760248816641.jpg - already exists
+[Analysis] Skipping threat_1760248817691.jpg - already exists
+[Analysis] Skipping threat_1760248817740.jpg - already exists
+[Analysis] Skipping threat_1760248822546.jpg - already exists
+[Analysis] Total detections in memory: 4
+⬅️ GET /api/analysis/detections?limit=50 304 Not Modified (1ms)
+➡️ OPTIONS /api/cameras (from ::1)
+⬅️ OPTIONS /api/cameras 204 No Content (1ms)
+➡️ GET /api/cameras (from ::1)
+⬅️ GET /api/cameras 404 Not Found (0ms)

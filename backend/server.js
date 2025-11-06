@@ -45,6 +45,11 @@ const staticPath = path.join(__dirname, 'static');
 app.use('/static', express.static(staticPath));
 console.log(`✅ Serving static files from: ${staticPath}`);
 
+// Serve captured frames
+const capturedFramesPath = path.join(__dirname, 'captured_frames');
+app.use('/captured_frames', express.static(capturedFramesPath));
+console.log(`✅ Serving captured frames from: ${capturedFramesPath}`);
+
 // --- API Routes ---
 // Mount routers AFTER core middleware
 console.log("🛠️ Attempting to mount API routes...");

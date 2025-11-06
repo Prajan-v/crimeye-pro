@@ -22,3 +22,4 @@ EXPOSE 3000
 
 # Run the production build
 CMD ["serve", "-s", "build", "-l", "3000"]
+

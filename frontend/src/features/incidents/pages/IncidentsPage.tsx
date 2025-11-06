@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { selectAllIncidents, fetchIncidents, selectIncidentsStatus, selectIncidentsError } from '../incidentsSlice';
+import { selectAllIncidents, fetchIncidents, selectIncidentsStatus, selectIncidentsError, addIncident } from '../incidentsSlice';
 import { AiDetection } from '../../../common/types';
-import { AlertCircle, Calendar, Camera as CameraIcon, Users, Loader, Search, Filter, Clock } from 'react-feather';
+import { AlertCircle, Calendar, Camera as CameraIcon, Users, Loader, Search } from 'react-feather';
 import { theme as appTheme } from '../../../common/styles/theme';
 import ParticleBackground from '../../../common/components/Effects/ParticleBackground';
 import GlassmorphicCard from '../../../common/components/Cards/GlassmorphicCard';
@@ -99,6 +99,17 @@ const FilterSelect = styled(motion.select)`
     box-shadow: ${({ theme }) => theme.shadows.glowPrimary};
     background: ${({ theme }) => theme.colors.background.surface};
   }
+`;
+const ActionButton = styled(motion.button)`
+  padding: ${({ theme }) => theme.spacing.md} ${({ theme }) => theme.spacing.lg};
+  font-size: ${({ theme }) => theme.fontSizes.base};
+  border-radius: ${({ theme }) => theme.borderRadius.lg};
+  border: 2px solid ${({ theme }) => theme.colors.accent.primary};
+  color: ${({ theme }) => theme.colors.accent.primary};
+  background: transparent;
+  cursor: pointer;
+  transition: all ${({ theme }) => theme.transitions.base};
+  &:hover { background: ${({ theme }) => theme.colors.background.surface}; }
 `;
 const IncidentsGrid = styled(motion.div)`
   display: grid;
@@ -231,9 +242,9 @@ const IncidentCard: React.FC<IncidentCardProps> = ({ detection }) => {
 
   return (
     <IncidentCardContainer $levelColor={levelColor} variants={itemVariants} layout>
-      <Thumbnail onClick={() => window.open(`http://localhost:5001/${detection.image_path}`)}>
+      <Thumbnail onClick={() => window.open(`http://localhost:8000/${detection.image_path}`)}>
         {detection.image_path ? (
-          <img src={`http://localhost:5001/${detection.image_path}`} alt={`Snapshot for ${detection.camera_id}`} />
+          <img src={`http://localhost:8000/${detection.image_path}`} alt={`Snapshot for ${detection.camera_id}`} />
         ) : (<CameraIcon />)}
       </Thumbnail>
       <Content>
@@ -272,6 +283,7 @@ const IncidentCard: React.FC<IncidentCardProps> = ({ detection }) => {
   );
 };
 
+
 const IncidentsPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const allIncidents = useAppSelector(selectAllIncidents);
@@ -290,6 +302,7 @@ const IncidentsPage: React.FC = () => {
       dispatch(fetchIncidents() as any); 
     }
   }, [status, dispatch]);
+
 
   // Filter incidents based on search and filters
   const filteredIncidents = allIncidents.filter(incident => {
